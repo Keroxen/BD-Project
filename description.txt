@@ -1,0 +1,5 @@
+1. Register and login
+2. HTML forms to MySQL DB
+3. DB accessed through PHP functions
+4. Template
+5. Documentation
