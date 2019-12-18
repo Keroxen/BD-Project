@@ -38,10 +38,11 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
-    <!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="css/materialize.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="css/materialize.css">-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="templates/sign_in.css">
     <title>BD-Games</title>
 </head>
 <body>
@@ -60,7 +61,12 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link btn-lg btn-primary add" href="#">Add a game</a>
+                </li>
+                <li class="nav-item active">
+                    <div class="box">
+                        <a href="#" class="btn btn-white btn-animation-1">Log in</a>
+                    </div>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Register</a>
@@ -74,45 +80,28 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
     </nav>
     <div class="container">
         <div class="row">
-            <?php foreach ($result
-
-            as $game) : ?>
-            <? echo $game['title']; ?>
-            <div class="col s12 m6 l3">
-                <img src="images/cyberpunk2077.jpg">
+            <?php foreach ($result as $game) : ?>
+            <div class="col-sm">
+                <img class="cards" src="images/cyberpunk2077.jpg">
             </div>
             <?php endforeach; ?>
         </div>
     </div>
 
 </div>
-<!--            <div class="col-sm">-->
-<!--                <img src="images/codmw2.jpg">-->
-<!--            </div>-->
-<!--            <div class="col-sm">-->
-<!--                <img src="images/cyberpunk2077.jpg">-->
-<!--            </div>-->
-<!--            <div class="col-sm">-->
-<!--                <img src="images/codmw2.jpg">-->
-<!--            </div>-->
-<!--            <div class="col-sm">-->
-<!--                <img src="images/cyberpunk2077.jpg">-->
-<!--            </div>-->
-<!--            <div class="col-sm">-->
-<!--                <img src="images/codmw2.jpg">-->
-<!--            </div>-->
 
 
 
 
-<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
-<!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
-<!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
-<!--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
-<!--        crossorigin="anonymous"></script>-->
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
