@@ -1,6 +1,6 @@
 <?php
 // connect to database
-$conn = mysqli_connect('localhost', 'alin', 'test1234', 'games_db');
+$conn = mysqli_connect('localhost', 'alin', 'alin00', 'games_db');
 
 // check connection
 if (!$conn) {
