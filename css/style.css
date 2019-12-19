@@ -119,26 +119,56 @@
     position: relative;
 }
 
+.card {
+    background-color: transparent;
+}
+
+.card{
+    margin-right: 70px;
+    margin-bottom: 55px;
+}
+
 .thumbnails{
-    margin-bottom: 200px;
+
     border-radius: 30px;
 }
 
-body{
+.card-title{
+    color: white;
+    text-align: center;
+}
+
+.details {
+    text-align: center;
+
+}
+
+h6 {
+    color: white;
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+body {
     padding-top: 300px;
 }
 
-img {
-    height: 380px;
-    width: 320px;
-}
+/*img {*/
+/*    height: 380px;*/
+/*    width: 320px;*/
+/*}*/
 
 
 .navbar {
     margin-bottom: 200px;
 }
 
-.nav-item{
+.nav-item {
     padding-right: 30px;
 }
 

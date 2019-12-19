@@ -40,8 +40,7 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!--    <link rel="stylesheet" href="css/materialize.css">-->
     <link rel="stylesheet" href="css/style.css">
 <!--    <link rel="stylesheet" href="templates/sign_in.css">-->
@@ -82,16 +81,22 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
     </nav>
     <div class="container">
         <div class="row">
+
             <?php foreach ($result as $game) : ?>
-            <div class="col-sm">
-
-                <img class="thumbnails" src="images/cyberpunk2077.jpg">
-                <h6><?php echo htmlspecialchars($game['title']); ?></h6>
-
+            <div class="card">
+                <img class="thumbnails card-img-top" src="images/cyberpunk2077.jpg">
+                <div class="card-body">
+                <h6 class="card-title"><?php echo htmlspecialchars($game['title']); ?></h6>
+                    <a href="#" class="btn details">Details</a>
+                </div>
             </div>
+
+
+
             <?php endforeach; ?>
         </div>
     </div>
+
 
 </div>
 
