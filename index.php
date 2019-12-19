@@ -1,6 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+
 // TODO register/login
 // TODO add/delete a game
 // TODO search and sort
@@ -28,6 +29,7 @@ $stmt->execute();
 //$conn = null;
 
 $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
 ?>
 
 <!doctype html>
@@ -42,7 +44,7 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!--    <link rel="stylesheet" href="css/materialize.css">-->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="templates/sign_in.css">
+<!--    <link rel="stylesheet" href="templates/sign_in.css">-->
     <title>BD-Games</title>
 </head>
 <body>
@@ -56,20 +58,20 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active home">
-                    <a class="nav-link" href="index.php">HOME<span class="sr-only">(current)</span></a>
+                    <a class="nav-link btn btn-primary btn-lg" href="index.php">HOME<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link btn-lg btn-primary add" href="#">Add a game</a>
+                <li class="nav-item ">
+                    <a class=" btn btn-primary" href="#" role="button">Add a game</a>
                 </li>
                 <li class="nav-item active">
                     <div class="box">
-                        <a href="#" class="btn btn-white btn-animation-1">Log in</a>
+                        <a href="#" class="btn btn-outline-warning">Log in</a>
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Register</a>
+                    <a class="btn btn-outline-primary" href="#">Register</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -82,7 +84,10 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         <div class="row">
             <?php foreach ($result as $game) : ?>
             <div class="col-sm">
-                <img class="cards" src="images/cyberpunk2077.jpg">
+
+                <img class="thumbnails" src="images/cyberpunk2077.jpg">
+                <h6><?php echo htmlspecialchars($game['title']); ?></h6>
+
             </div>
             <?php endforeach; ?>
         </div>
