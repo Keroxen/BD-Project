@@ -1,17 +1,19 @@
 <?php
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
-
+error_reporting( E_ALL );
+ini_set( 'display_errors', 1 );
 // TODO register/login
 // TODO add/delete a game
+// TODO move nav in header
 // TODO search and sort
 include('config/db_connect.php');
 
 //$sql = 'SELECT id_game, title FROM games ORDER BY id';
-////$result = mysqli_query($conn, $sql);
-////$games = mysqli_fetch_all($result, MYSQLI_ASSOC);
-////mysqli_free_result($result);
-////mysqli_close($conn);
+//$result = mysqli_query($conn, $sql);
+//$games = mysqli_fetch_all($result, MYSQLI_ASSOC);
+//mysqli_free_result($result);
+//mysqli_close($conn);
 
 // PDO
 $stmt = $conn->prepare("SELECT id_game, title FROM games");
@@ -26,7 +28,7 @@ $stmt->execute();
 //catch(PDOException $e) {
 //    echo "Error: " . $e->getMessage();
 //}
-//$conn = null;
+$conn = null;
 
 $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -87,11 +89,11 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             <?php foreach ($result
                            as $game) : ?>
                 <div class="card">
-                    <a class="details" href="templates/details.php">
+                    <a class="details" href="templates/details.php?id=<?php echo $game['id_game'] ?>">
                         <img class="thumbnails card-img-top" src="images/cyberpunk2077.jpg">
                     </a>
                     <div class="card-body">
-                        <a class="details" href="templates/details.php">
+                        <a class="details" href="templates/details.php?id=<?php echo $game['id_game'] ?>">
                             <h6 class="card-title"><?php echo htmlspecialchars($game['title']); ?></h6>
                         </a>
                     </div>
