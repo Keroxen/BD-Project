@@ -40,10 +40,11 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<!--    <link rel="stylesheet" href="css/materialize.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--    <link rel="stylesheet" href="css/materialize.css">-->
     <link rel="stylesheet" href="css/style.css">
-<!--    <link rel="stylesheet" href="templates/sign_in.css">-->
+    <!--    <link rel="stylesheet" href="templates/sign_in.css">-->
     <title>BD-Games</title>
 </head>
 <body>
@@ -57,7 +58,8 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active home">
-                    <a class="nav-link btn btn-primary btn-lg" href="index.php">HOME<span class="sr-only">(current)</span></a>
+                    <a class="nav-link btn btn-primary btn-lg" href="index.php">HOME<span
+                                class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -80,28 +82,24 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         </div>
     </nav>
     <div class="container">
+        <h1 class="header">Test</h1>
         <div class="row">
-
-            <?php foreach ($result as $game) : ?>
-            <div class="card">
-                <img class="thumbnails card-img-top" src="images/cyberpunk2077.jpg">
-                <div class="card-body">
-                <h6 class="card-title"><?php echo htmlspecialchars($game['title']); ?></h6>
-                    <a href="#" class="btn details">Details</a>
+            <?php foreach ($result
+                           as $game) : ?>
+                <div class="card">
+                    <a class="details" href="templates/details.php">
+                        <img class="thumbnails card-img-top" src="images/cyberpunk2077.jpg">
+                    </a>
+                    <div class="card-body">
+                        <a class="details" href="templates/details.php">
+                            <h6 class="card-title"><?php echo htmlspecialchars($game['title']); ?></h6>
+                        </a>
+                    </div>
                 </div>
-            </div>
-
-
-
             <?php endforeach; ?>
         </div>
     </div>
-
-
 </div>
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

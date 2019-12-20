@@ -123,39 +123,45 @@
     background-color: transparent;
 }
 
-.card{
+.card {
+    border: none;
     margin-right: 70px;
     margin-bottom: 55px;
 }
 
-.thumbnails{
+.thumbnails {
 
     border-radius: 30px;
 }
 
-.card-title{
+.card-title {
     color: white;
     text-align: center;
 }
 
-.details {
-    text-align: center;
+.details:hover {
+    text-decoration: none;
+}
 
+.header {
+    text-align: center;
+    color: white;
+    font-size: 55px;
+    margin-bottom: 4em;
 }
 
 h6 {
     color: white;
-    text-shadow:
-            -1px -1px 0 #000,
-            1px -1px 0 #000,
-            -1px 1px 0 #000,
-            1px 1px 0 #000;
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
     font-weight: bold;
     font-size: 18px;
 }
 
 body {
-    padding-top: 300px;
+    padding-top: 100px;
 }
 
 /*img {*/
