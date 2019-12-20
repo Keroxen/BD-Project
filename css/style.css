@@ -119,26 +119,62 @@
     position: relative;
 }
 
-.thumbnails{
-    margin-bottom: 200px;
+.card {
+    background-color: transparent;
+}
+
+.card {
+    border: none;
+    margin-right: 70px;
+    margin-bottom: 55px;
+}
+
+.thumbnails {
+
     border-radius: 30px;
 }
 
-body{
-    padding-top: 300px;
+.card-title {
+    color: white;
+    text-align: center;
 }
 
-img {
-    height: 380px;
-    width: 320px;
+.details:hover {
+    text-decoration: none;
 }
+
+.header {
+    text-align: center;
+    color: white;
+    font-size: 55px;
+    margin-bottom: 4em;
+}
+
+h6 {
+    color: white;
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+body {
+    padding-top: 100px;
+}
+
+/*img {*/
+/*    height: 380px;*/
+/*    width: 320px;*/
+/*}*/
 
 
 .navbar {
     margin-bottom: 200px;
 }
 
-.nav-item{
+.nav-item {
     padding-right: 30px;
 }
 
