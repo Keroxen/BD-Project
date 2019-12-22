@@ -1,6 +1,7 @@
 <?php
 
 include('../config/db_connect.php');
+include('header.php');
 //extract($_POST);
 //
 //$UploadedFileName = $_FILES['UploadImage']['name'];
@@ -33,13 +34,14 @@ if (isset($_POST["submit"])) {
     if ($check !== false) {
         $image = $_FILES['image']['tmp_name'];
         $imgContent = addslashes(file_get_contents($image));
-        $insert = $conn->query("INSERT INTO games (title, image) VALUES ('$title','$imgContent')");
+        $insert = $conn->query("INSERT INTO games (image, title) VALUES ('$imgContent','$title')");
         if ($insert) {
             echo "File uploaded successfully.";
+            header('Location: ../index.php');
         } else {
             echo "File upload failed, please try again.";
         }
-    } else if ($check = @getimagesize($_FILES["image"]["tmp_name"])) {
+    } else {
         echo "Please select an image file to upload.";
     }
 }
@@ -56,14 +58,16 @@ if (isset($_POST["submit"])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Upload</title>
 </head>
 <body>
+
 <form action="upload.php" method="POST" enctype="multipart/form-data">
     <label>Title: </label>
     <input type="text" name="title">
     <input type="file" name="image">
-    <input type="submit" name="submit" value="UPLOAD">
+    <input type="submit" name="submit" value="Add game">
 </form>
 </body>
 </html>

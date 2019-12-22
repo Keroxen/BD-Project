@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     $stmt->bindParam(':id', $id);
     $stmt->execute();
     // $result = $stmt;
-    $games = $stmt->fetchAll();
+    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
     //  echo $games['title'];
     //  print_r($result);
 }
@@ -45,11 +45,10 @@ if (isset($_GET['id'])) {
 </head>
 <body>
 <div class="container">
-
     <?php foreach ($games
                    as $game) :
         echo $game['title'] . '<br>';
-        echo '<img style="border-radius: 30px" src="data:image/jpeg;base64,' . base64_encode($game['image']) . '"/>';
+        echo '<img style="border-radius: 30px; height: 300px; width: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '"/>';
     endforeach;
     ?>
 </div>
