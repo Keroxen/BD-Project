@@ -1,8 +1,8 @@
 <?php
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
-error_reporting( E_ALL );
-ini_set( 'display_errors', 1 );
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // TODO register/login
 // TODO add/delete a game
 // TODO move nav in header
@@ -16,7 +16,7 @@ include('config/db_connect.php');
 //mysqli_close($conn);
 
 // PDO
-$stmt = $conn->prepare("SELECT id_game, title FROM games");
+$stmt = $conn->prepare("SELECT id_game, title, image FROM games");
 $stmt->execute();
 
 // set the resulting array to associative
@@ -28,9 +28,9 @@ $stmt->execute();
 //catch(PDOException $e) {
 //    echo "Error: " . $e->getMessage();
 //}
-$conn = null;
+//$conn = null;
 
-$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -66,7 +66,7 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item ">
-                    <a class=" btn btn-primary" href="#" role="button">Add a game</a>
+                    <a class=" btn btn-primary" href="templates/upload.php" role="button">Add a game</a>
                 </li>
                 <li class="nav-item active">
                     <div class="box">
@@ -90,7 +90,7 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                            as $game) : ?>
                 <div class="card">
                     <a class="details" href="templates/details.php?id=<?php echo $game['id_game'] ?>">
-                        <img class="thumbnails card-img-top" src="images/cyberpunk2077.jpg">
+                        <?php echo '<img style="border-radius: 30px; height: 300px; width: 250px" src="data:image/jpeg;base64,' . base64_encode($game['image']) . '"/>'; ?>
                     </a>
                     <div class="card-body">
                         <a class="details" href="templates/details.php?id=<?php echo $game['id_game'] ?>">
