@@ -2,7 +2,10 @@
   <dictionary name="alyna">
     <words>
       <w>alin</w>
+      <w>mailuid</w>
       <w>navbar</w>
+      <w>signup</w>
+      <w>wrongpwd</w>
     </words>
   </dictionary>
 </component>
