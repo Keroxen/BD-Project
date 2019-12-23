@@ -1,16 +1,16 @@
 <?php
 require "header.php";
 ?>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="login/includes/css/form-style.css">
-        <title>Signup</title>
-    </head>
-    <body>
-    <div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="login/includes/css/form-style.css">
+    <title>Signup</title>
+</head>
+<body>
+<div class="container">
     <form action="login/includes/signup.inc.php" method="POST">
         <div class="form">
             <div class="form-head">Sign up!</div>
@@ -33,10 +33,15 @@ require "header.php";
                 } else if ($_GET['error'] == "nouser") {
                     echo '<p class = "error-message">That user doesn\'t exist! </p>';
                 }
-            }
-            if ($_GET['signup'] == "success") {
+            } else if ($_GET['signup'] == "success") {
                 echo '<p class = "success-message">Signup successful! </p>';
+                header("Refresh: 2; URL=index.php");
             }
+
+            //            if ($_GET['signup'] == "success") {
+            //                echo '<p class = "success-message">Signup successful! </p>';
+            //                header("Refresh: 2; URL=index.php");
+            //            }
             ?>
             <div class="form-group">
                 <input class="form-control" type="text" name="uid" placeholder="Username">
@@ -53,7 +58,7 @@ require "header.php";
             <button class="btnRegister" type="submit" name="signup-submit">Sign up!</button>
         </div>
     </form>
-    </div>
+</div>
 
-    </body>
+</body>
 

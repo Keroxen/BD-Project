@@ -10,13 +10,24 @@
 </head>
 <body>
 <div class="container">
-    <?php
-    require 'header.php';
-    if ($_SESSION['userUid'] == 'guest') {
-        echo ' 
+    <div class="form">
+        <?php
+        require 'header.php';
+        if (isset($_GET['error'])) {
+            if ($_GET['error'] == "emptyfields") {
+                echo '<p class = "error-message">Fill in all fields! </p>';
+            } else if ($_GET['error'] == "invalidmailuid") {
+                echo '<p class = "error-message">Invalid username and e-mail! </p>';
+            } else if ($_GET['error'] == "nouser") {
+                echo '<p class = "error-message">Invalid username/email! </p>';
+            } else if ($_GET['error'] == "wrongpwd") {
+                echo '<p class = "error-message">Wrong password! </p>';
+            }
+        }
+        if ($_SESSION['userUid'] == 'guest') {
+            echo ' 
  <form action="login/includes/login.inc.php" method="POST">
- <div class="form">
-   <div class="form-head">Log in to your account!</div>
+ <div class="form-head">Log in to your account!</div>
  <div class="form-group">
                 <input class="form-control" type="text" name="mailuid"
                        placeholder="Username/E-mail...">
@@ -31,11 +42,9 @@
                 </button>
                 </div>
             </form>
-          
             ';
-    }
-    ?>
-
-</div>
+        }
+        ?>
+    </div>
 </body>
 </html>

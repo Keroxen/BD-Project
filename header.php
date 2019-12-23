@@ -32,23 +32,36 @@ session_start();
                 <a class="nav-link btn btn-primary btn-lg" href="index.php">HOME<span
                             class="sr-only">(current)</span></a>
             </li>
-            <li class="hello">Hello, <?php if (isset($_SESSION['userUid'])) {
+
+        </ul>
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item hello">Hello, <?php if (isset($_SESSION['userUid'])) {
                     echo $_SESSION['userUid'] . '!';
                 } else {
-                $_SESSION['userUid'] = 'guest';
+                    $_SESSION['userUid'] = 'guest';
                     echo $_SESSION['userUid'] . '!';
                 } ?>
             </li>
+        </ul>
+
+
+        <ul class="navbar-nav ml-auto">
+
             <?php if ($_SESSION['userUid'] != "guest") {
-                echo '<li class="nav-item active">
+                echo '<li class="nav-item addGame">
+                <a class="btn btn-primary" href="upload.php">Add a game</a>
+            </li>
+           </ul>
+           
+           <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
                 <a class="btn btn-outline-primary logout" href="login/includes/logout.inc.php">Logout</a>
             </li>';
-            } ?>
+            }
+            ?>
+
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-                <a class=" btn btn-primary" href="upload.php" role="button">Add a game</a>
-            </li>
             <?php if ($_SESSION['userUid'] == 'guest') {
                 echo '<li class="nav-item active">
                     <a href="login.php" class="btn btn-outline-warning">Log in</a>
@@ -58,15 +71,14 @@ session_start();
             </li>';
             }
             ?>
-
         </ul>
-        <!--        search bar?-->
-        <!--        <form class="form-inline my-2 my-lg-0">-->
-        <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-        <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-        <!--        </form>-->
     </div>
 </nav>
+<!--        search bar?-->
+<!--        <form class="form-inline my-2 my-lg-0">-->
+<!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--        </form>-->
 
 
 <!--//if (isset($_SESSION['userId'])) {-->
