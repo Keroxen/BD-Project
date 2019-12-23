@@ -3,11 +3,11 @@
 //ini_set('display_errors', 1);
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-// TODO register/login
-// TODO move nav in header
-// TODO search and sort
+// TODO search and sort ?
+// TODO the grid is broken...
+// TODO some transitions
 include('config/db_connect.php');
-include('templates/header.php');
+include('header.php');
 
 //$sql = 'SELECT id_game, title FROM games ORDER BY id';
 //$result = mysqli_query($conn, $sql);
@@ -43,28 +43,22 @@ $result = $stmt->fetchAll();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!--    <link rel="stylesheet" href="css/materialize.css">-->
-    <link rel="stylesheet" href="css/style.css">
-    <!--    <link rel="stylesheet" href="templates/sign_in.css">-->
     <title>BD-Games</title>
 </head>
 <body>
 
 <div class="content">
-
     <div class="container">
         <h1 class="header">Test</h1>
         <div class="row">
             <?php foreach ($result
                            as $game) : ?>
                 <div class="card">
-                    <a class="details" href="templates/details.php?id=<?php echo $game['id_game'] ?>">
+                    <a class="details" href="details.php?id=<?php echo $game['id_game'] ?>">
                         <?php echo '<img style="border-radius: 30px; height: 300px; width: 250px" src="data:image/jpeg;base64,' . base64_encode($game['image']) . '"/>'; ?>
                     </a>
                     <div class="card-body">
-                        <a class="details" href="templates/details.php?id=<?php echo $game['id_game'] ?>">
+                        <a class="details" href="details.php?id=<?php echo $game['id_game'] ?>">
                             <h6 class="card-title"><?php echo htmlspecialchars($game['title']); ?></h6>
                         </a>
                     </div>

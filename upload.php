@@ -1,6 +1,6 @@
 <?php
 
-include('../config/db_connect.php');
+include('config/db_connect.php');
 include('header.php');
 //extract($_POST);
 //
@@ -37,7 +37,7 @@ if (isset($_POST["submit"])) {
         $insert = $conn->query("INSERT INTO games (image, title) VALUES ('$imgContent','$title')");
         if ($insert) {
             echo "File uploaded successfully.";
-            header('Location: ../index.php');
+            header('Location: index.php');
         } else {
             echo "File upload failed, please try again.";
         }
@@ -56,9 +56,6 @@ if (isset($_POST["submit"])) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
     <title>Upload</title>
 </head>
 <body>

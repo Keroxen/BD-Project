@@ -173,3 +173,15 @@ body {
 .home {
     padding-right: 50px;
 }
+
+.hello {
+    margin: auto;
+    text-align: center;
+    font-size: 19px;
+    color: white;
+}
+
+.logout {
+    padding: 10px;
+    margin-left: 30px;
+}

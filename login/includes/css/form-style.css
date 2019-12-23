@@ -57,13 +57,26 @@ body {
 
 .btnRegister {
     padding: 13px;
-    background-color: #5d9cec;
     color: #f5f7fa;
     cursor: pointer;
     border-radius: 4px;
     width: 100%;
     border: #5791da 1px solid;
     font-size: 1.1em;
+    background: rgb(2,0,36);
+    background: linear-gradient(231deg, rgba(2,0,36,1) 0%, rgba(101,9,121,1) 17%, rgba(0,212,255,1) 100%);
+}
+
+.btnLogin {
+    padding: 13px;
+    color: #f5f7fa;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    border: #5791da 1px solid;
+    font-size: 1.1em;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,69,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 .response-text {
