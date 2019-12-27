@@ -1,12 +1,20 @@
 <component name="ProjectDictionaryState">
   <dictionary name="alyna">
     <words>
+      <w>addgame</w>
       <w>alin</w>
+      <w>emptyfields</w>
+      <w>invalidmail</w>
+      <w>invalidmailuid</w>
+      <w>invaliduid</w>
+      <w>mailtaken</w>
       <w>mailuid</w>
       <w>navbar</w>
       <w>nouser</w>
+      <w>passwordcheck</w>
       <w>signup</w>
       <w>toggler</w>
+      <w>usertaken</w>
       <w>wrongpwd</w>
     </words>
   </dictionary>

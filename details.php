@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 
 include('config/db_connect.php');
-include ('header.php');
+include('header.php');
 
 // delete a game from DB
 if (isset($_POST['delete'])) {
@@ -46,15 +46,18 @@ if (isset($_GET['id'])) {
 <div class="container">
     <?php foreach ($games
                    as $game) :
-        echo $game['title'] . '<br>';
-        echo '<img style="border-radius: 30px; height: 300px; width: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '"/>';
-    endforeach;
+        echo $game['title'] . '<br>' ?>
+            <img src="<?= IMAGE_URL . $game['title'] . ".JPG" ?>">
+<!--         '<img style="border-radius: 30px; height: 300px; width: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '">';-->
+   <?php endforeach;
     ?>
 </div>
 
 <form action="details.php" method="POST">
     <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
-    <input type="submit" name="delete" value="Delete" class="btn">
+    <?php if ($_SESSION['userUid'] != 'guest') {
+        echo '<input type="submit" name="delete" value="Delete game" class="btn">';
+    } ?>
 </form>
 
 

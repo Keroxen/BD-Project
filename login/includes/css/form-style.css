@@ -33,7 +33,7 @@ body {
 }
 
 .form {
-    background: #ffffff;
+    background: white;
     border-spacing: initial;
     margin: 15px auto;
     word-break: break-word;
@@ -57,7 +57,8 @@ body {
 
 .btnRegister {
     padding: 13px;
-    color: #f5f7fa;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
     border-radius: 4px;
     width: 100%;
@@ -69,7 +70,8 @@ body {
 
 .btnLogin {
     padding: 13px;
-    color: #f5f7fa;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
     border-radius: 4px;
     width: 100%;
