@@ -28,6 +28,7 @@
             echo ' 
  <form action="login/includes/login.inc.php" method="POST">
  <div class="form-head">Log in to your account!</div>
+ <div class="logIn">
  <div class="form-group">
                 <input class="form-control" type="text" name="mailuid"
                        placeholder="Username/E-mail...">
@@ -38,8 +39,9 @@
                  </div>
                  <div class="form-group">
                 <button class="btnLogin login" type="submit" name="login-submit">
-                    Login
+                    Log in
                 </button>
+                </div>
                 </div>
             </form>
             ';

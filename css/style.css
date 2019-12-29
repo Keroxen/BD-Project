@@ -99,14 +99,12 @@
     right: 0;
     bottom: 0;
     z-index: -1;
-
     display: block;
     background-image: url('../images/background.jpg');
     background-repeat: repeat-y;
     background-size: cover;
     width: 110%;
     height: 110%;
-
     -webkit-filter: blur(4px);
     -moz-filter: blur(4px);
     -o-filter: blur(4px);
@@ -114,7 +112,7 @@
     filter: blur(4px);
 }
 
-.content {
+.content, .signUp, .logIn {
     overflow: auto;
     position: relative;
 }
@@ -131,14 +129,12 @@
     right: 0;
     bottom: 0;
     z-index: -1;
-
     display: block;
     background-image: url('../images/background2.jpg');
     background-repeat: repeat-y;
     background-size: cover;
     width: 110%;
     height: 110%;
-
     -webkit-filter: blur(4px);
     -moz-filter: blur(4px);
     -o-filter: blur(4px);
@@ -146,9 +142,25 @@
     filter: blur(4px);
 }
 
-.signUp {
-    overflow: auto;
-    position: relative;
+.logIn:before {
+    content: "";
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    display: block;
+    background-image: url('../images/backgroundlogin.jpg');
+    background-repeat: repeat-y;
+    background-size: cover;
+    width: 110%;
+    height: 110%;
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter: blur(4px);
 }
 
 .card {
