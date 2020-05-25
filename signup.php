@@ -47,7 +47,7 @@ require "header.php";
                 'invaliduid' => 'Invalid username!',
                 'invalidmail' => 'Invalid email!',
                 'passwordcheck' => 'Your passwords do not match!',
-                'usertaken' => 'Username is already taken!',
+                'usertaken' => 'Username/email is already taken!',
                 'mailtaken' => 'Email is already taken!',
                 'nouser' => 'That user doesn\'t exist!',
             ];

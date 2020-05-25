@@ -28,6 +28,8 @@ if (isset($_GET['id'])) {
     $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
     //  echo $games['title'];
     //  print_r($result);
+
+
 }
 
 
@@ -43,23 +45,31 @@ if (isset($_GET['id'])) {
     <title>Document</title>
 </head>
 <body>
-<div class="container">
+<div class="h1 text-center">
     <?php foreach ($games
-                   as $game) :
-        echo $game['title'] . '<br>' ?>
-            <img src="<?= IMAGE_URL . $game['title'] . ".JPG" ?>">
-<!--         '<img style="border-radius: 30px; height: 300px; width: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '">';-->
-   <?php endforeach;
-    ?>
+
+    as $game) :
+    echo $game['title'] . '<br>' ?>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="about-img" src="<?= IMAGE_URL . $game['title'] . ".JPG" ?>">
+            <!--         '<img style="border-radius: 30px; height: 300px; width: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '">';-->
+            <?php endforeach;
+            ?>
+            <form action="details.php" method="POST">
+                <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                <?php if ($_SESSION['userUid'] != 'guest') {
+                    echo '<input type="submit" name="delete" value="Delete game" class="btn">';
+                } ?>
+            </form>
+        </div>
+        <div class="col-md-6">
+        <?php echo $game['id_deve'] ?>
 
-<form action="details.php" method="POST">
-    <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
-    <?php if ($_SESSION['userUid'] != 'guest') {
-        echo '<input type="submit" name="delete" value="Delete game" class="btn">';
-    } ?>
-</form>
-
+        </div>
+    </div>
 
 </body>
 </html>
