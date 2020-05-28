@@ -30,6 +30,20 @@ if (isset($_GET['id'])) {
     //  print_r($result);
 
 
+    $stmt = $conn->prepare("SELECT dev.name FROM games, dev
+    WHERE 
+    games.id_pub = dev.id_dev");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $dev = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmt = $conn->prepare("SELECT pub.name FROM games, pub
+    WHERE 
+    games.id_deve = dev.id_dev");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $dev = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 }
 
 
@@ -66,7 +80,8 @@ if (isset($_GET['id'])) {
             </form>
         </div>
         <div class="col-md-6">
-        <?php echo $game['id_deve'] ?>
+        <?php echo $dev[0]['name'];
+        echo $pub[0]['name']?>
 
         </div>
     </div>

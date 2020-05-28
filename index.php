@@ -15,7 +15,7 @@ include('header.php');
 //$con = mysqli_connect($servername, $username, $password, "games_db");
 // PDO
 //$stmt = $conn->prepare("SELECT games.id_game, games.title FROM games INNER JOIN images ON games.id_game = images.id_image");
-$stmt = $conn->prepare("SELECT id_game, title, image FROM games");
+$stmt = $conn->prepare("SELECT id, title, image FROM games");
 //$sql = "SELECT images.path FROM images INNER JOIN games ON games.id_game = images.id_image";
 //$res = mysqli_query($con, $sql);
 $stmt->execute();
