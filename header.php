@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-define( 'IMAGE_URL', 'uploads/' );
+define('IMAGE_URL', 'uploads/');
 //if (isset($_POST['login-submit'])) {
 //    $sessionUid = $_POST['mailuid'];
 //    $_SESSION['mailuid'] = $sessionUid;
@@ -16,7 +16,8 @@ define( 'IMAGE_URL', 'uploads/' );
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -98,39 +99,43 @@ define( 'IMAGE_URL', 'uploads/' );
                 <a class="nav-link btn btn-primary" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="hello">
-     Hello, <?php if (isset($_SESSION['userUid'])) {
+                Hello, <?php if (isset($_SESSION['userUid'])) {
                     echo $_SESSION['userUid'] . '!';
                 } else {
                     $_SESSION['userUid'] = 'guest';
                     echo $_SESSION['userUid'] . '!';
                 } ?>
-    </li>
+            </li>
         </ul>
-            <?php if ($_SESSION['userUid'] != "guest") {
-                echo '<ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link btn btn-info" href="addgame.php">Add a game</a>
+        <?php if ($_SESSION['userUid'] != "guest") {
+            echo '<ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link btn btn-primary" href="addgame.php">Add a game</a>
             </li>
            </ul>';
-            } ?>
+        } ?>
 
 
-            <ul class="navbar-nav">
-                <?php if ($_SESSION['userUid'] == 'guest') {
-                    echo '<li class="nav-item">
+        <ul class="navbar-nav">
+            <?php if ($_SESSION['userUid'] == 'guest') {
+                echo '<li class="nav-item">
                                 <a href="login.php" class="btn btn-success">Log in</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-outline-warning" href="signup.php">Signup</a>
                         </li>';
-                }
-                ?>
-            </ul>
+            }
+            ?>
+        </ul>
         <?php if (isset($_SESSION['userId'])) {
             echo '<form class="form-inline" action="login/includes/logout.inc.php" method="POST">
-                            <button class="btn btn-outline-danger" type="submit" name="logout-submit">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                            <button class="nav-link btn btn-outline-danger" type="submit" name="logout-submit" href="">
                                 Logout
                             </button>
+                            </li>
+                            </ul>
                         </form>';
         } ?>
     </div>

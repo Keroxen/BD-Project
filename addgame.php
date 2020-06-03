@@ -46,15 +46,17 @@ include('header.php');
 //    }
 //}
 
-$con = mysqli_connect($servername, $username, $password, "games_db");
+//$con = mysqli_connect($servername, $username, $password, "games_db");
 
 ?>
 
 
 
 <?php if (isset($_POST['submit'])) {
+//    $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);
 
-    $title = $_POST['title'];
+    $title = $_POST["title"];
+
     $name = $_FILES['image']['name'];
     $target_dir = "uploads/";
     $fullPath = $target_dir . "/" . $name;
@@ -66,9 +68,13 @@ $con = mysqli_connect($servername, $username, $password, "games_db");
 // Check extension
     if (in_array($imageFileType, $extensions_arr)) {
 // Insert record
-        $query = "insert into games (title, image) values('$title', '$fullPath')";
-        // $query = "insert into games (title) values($title)";
-        mysqli_query($con, $query);
+//        $query = "INSERT INTO games (title, image, release_date) values('$title', '$fullPath' , '2018-04-12')";
+//         $query = "INSERT INTO games (title, release_date) VALUES ($title, '2018-02-03')";
+//        mysqli_query($conn, $query) or trigger_error("Query Failed! SQL: $query - Error: ".mysqli_error($conn), E_USER_ERROR);
+        $stmt = $conn->prepare("INSERT INTO games (title, release_date) VALUES (:title, '2018-02-03')");
+        $stmt->execute(['title' => $title]);
+//    mysqli_query($con, $query) or die(mysqli_error($con);
+
 // Upload file
         move_uploaded_file($_FILES['image']['tmp_name'], $target_dir . $name);
     }
