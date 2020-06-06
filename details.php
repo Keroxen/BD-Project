@@ -107,10 +107,10 @@ if (isset($_GET['id'])) {
                         <img src="uploads/cyberpunk%202077.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="uploads/cyberpunk%202077.jpg" class="d-block w-100" alt="...">
+                        <img src="uploads/the%20elder%20scrolls%20v%20skyrim.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="uploads/cyberpunk%202077.jpg" class="d-block w-100" alt="...">
+                        <img src="uploads/apex%20legends.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -122,16 +122,16 @@ if (isset($_GET['id'])) {
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-<!--            <img class="about-img" src="--><?//= IMAGE_URL . $games['title'] . ".JPG" ?><!--">-->
+            <!--            <img class="about-img" src="--><? //= IMAGE_URL . $games['title'] . ".JPG" ?><!--">-->
             <!--         '<img style="border-radius: 30px; height: 300px; width: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '">';-->
             <!--            --><?php //endforeach;
             ?>
-<!--            <form action="details.php" method="POST">-->
-<!--                <input type="hidden" name="id" value="--><?php //echo $_GET['id']; ?><!--">-->
-<!--                --><?php //if ($_SESSION['userUid'] != 'guest') {
-//                    echo '<input type="submit" name="delete" value="Delete game" class="btn">';
-//                } ?>
-<!--            </form>-->
+            <!--            <form action="details.php" method="POST">-->
+            <!--                <input type="hidden" name="id" value="--><?php //echo $_GET['id']; ?><!--">-->
+            <!--                --><?php //if ($_SESSION['userUid'] != 'guest') {
+            //                    echo '<input type="submit" name="delete" value="Delete game" class="btn">';
+            //                } ?>
+            <!--            </form>-->
         </div>
         <div class="col-md-6">
             <?php
@@ -140,7 +140,7 @@ if (isset($_GET['id'])) {
             echo "Publisher: " . $pub['name'] . '<br>';
             echo "Modes: " . $games['modes'] . '<br>';
             echo "Genre: " . $games['genre'] . '<br>';
-            echo "Platforms: ";
+            echo "Digital distribution service: ";
             foreach ($platf as $key => $item) {
                 $platfName = $item['name'];
                 echo $platfName . ' ';

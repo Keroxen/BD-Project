@@ -228,6 +228,7 @@ body {
 
 .hello {
     margin: auto;
+    margin-right: 70px;
     font-size: 19px;
     color: white;
 }
