@@ -8,9 +8,7 @@ $sql = "
 
     SELECT title FROM games WHERE modes = 'Single-player';
     SELECT title FROM games WHERE modes = 'Single-player, multiplayer';
-    SELECT title FROM games WHERE modes = 'Multiplayer'
-    ";
-
+    SELECT title FROM games WHERE modes = 'Multiplayer'";
 
 
 try {
@@ -20,17 +18,50 @@ try {
     $modes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->nextRowset();
     $sg = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//    $sg = $stmt->fetch();
+    $sgCount = $stmt->rowCount();
+
     $stmt->nextRowset();
     $sgMp = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sgMpCount = $stmt->rowCount();
     $stmt->nextRowset();
     $mp = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $mpCount = $stmt->rowCount();
 
-//    print_r($sg);
+    $maxRows = max($sgCount, $sgMpCount, $mpCount);
+
+//    echo $sgCount;
+//    echo $sgMpCount;
+//    echo $mpCount;
+
+
+//    $resultsArray = array();
+//    while ($row = mysqli_fetch_array($sg)) {
+//        $single = $row['modes'];
+//        $resultsArray[$single][] = $row['title'];
+//    }
+//
+//
+//    $x = count($resultsArray);
+//
+//    $sgData = ( !empty($resultsArray['Single-player'][$x]) ) ? $resultsArray['Single-player'][$x] : "";
+
+
+//    echo "\n";
+////    print_r($sg);
+//    echo $sg[0]['title'];
+//    echo "\n";
+////    print_r($sgMp);
+//    echo "\n";
+////    print_r($mp);
+//    echo "\n";
 
 } catch (PDOException $e) {
     echo $e->getMessage();
     die();
 }
+
+$printedRecords = 0;
 
 ?>
 
@@ -46,31 +77,41 @@ try {
 </head>
 <body>
 <div class="content">
-    <table class="table table-borderless ">
-        <thead>
-        <tr>
-            <?php foreach ($modes as $mode)
-             echo  "<th scope='row'>" . $mode['modes']; ?>
+    <div class="container-md">
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <?php foreach ($modes as $mode)
+                    echo "<th scope='row'>" . $mode['modes']; ?>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            for ($i = 0;
+                 $i < $maxRows;
+                 $i++) {
+                echo "<tr>";
+                if (isset($sg[$i]['title'])) {
+                    echo "<td>" .  $sg[$i]['title'];
+                } else {
+                    echo "";
+                }
+                if (isset($sgMp[$i]['title'])) {
+                    echo "<td>" . $sgMp[$i]['title'];
+                } else {
+                    echo "";
+                }
+                if (isset($mp[$i]['title'])) {
+                    echo "<td>" . $mp[$i]['title'];
+                } else {
+                    echo "";
+                }
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
