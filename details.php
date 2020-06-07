@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
-include('config/db_connect.php');
+//include('config/db_connect.php');
 include('header.php');
 
 // delete a game from DB
@@ -52,11 +52,16 @@ if (isset($_GET['id'])) {
         $games = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->nextRowset();
         $dev = $stmt->fetch(PDO::FETCH_ASSOC);
+
         $stmt->nextRowset();
         $pub = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->nextRowset();
         $platf = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
+        $developerId = $dev['developer_id'];
+        $publisherId = $pub['publisher_id'];
+//        $platformId = $platf['id_ddp'];
 
     } catch (PDOException $e) {
         echo $e->getMessage();
@@ -136,8 +141,8 @@ if (isset($_GET['id'])) {
         <div class="col-md-6">
             <?php
             echo "Title: " . $games['title'] . '<br>';
-            echo "Developer: " . $dev['name'] . '<br>';
-            echo "Publisher: " . $pub['name'] . '<br>';
+            echo "Developer: " . "<a href='developer.php?id=$developerId'>" . $dev['name'] . "</a>" . "<br>";
+            echo "Publisher: " . "<a href='publisher.php?id=$publisherId'>" . $pub['name'] . "</a>" . "<br>";
             echo "Modes: " . $games['modes'] . '<br>';
             echo "Genre: " . $games['genre'] . '<br>';
             echo "Digital distribution service: ";

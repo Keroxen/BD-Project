@@ -1,5 +1,6 @@
 <?php
 
+include('config/db_connect.php');
 session_start();
 define('IMAGE_URL', 'uploads/');
 //if (isset($_POST['login-submit'])) {

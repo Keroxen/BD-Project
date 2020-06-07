@@ -5,7 +5,7 @@
 // TODO proiectie: SELECT DISTINCT modes/genre FROM games;  afisez toate modes/genres o singura daca si jocurile care apartin
 // TODO 
 
-include('config/db_connect.php');
+//include('config/db_connect.php');
 include('header.php');
 
 //$sql = 'SELECT id_game, title FROM games ORDER BY id';
