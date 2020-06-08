@@ -47,6 +47,8 @@ if (isset($_GET['id'])) {
     ON game_platform.platform_id = digital_platform.platform_id
     WHERE game_platform.game_id = :id";
 
+
+
     try {
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id', $game_id);

@@ -1,126 +1,89 @@
 <?php
-echo "developer page";
 
-//
-//include('header.php');
-//
-////$game_id = $_GET['id'];
-////
-////
-////$stmt = $conn->prepare("SELECT * FROM game WHERE game_id = :id");
-////$sql = "
-////    SELECT title, genre, modes, release_date FROM game WHERE game_id = :id;
-////
-////$sql = "
-////    SELECT * FROM developer WHERE ";
-////
-//////    SELECT title FROM game WHERE modes = 'Single-player';
-//////    SELECT title FROM game WHERE modes = 'Single-player, multiplayer';
-//////    SELECT title FROM game WHERE modes = 'Multiplayer'";
-//
-//
-////try {
-////    $stmt = $conn->prepare($sql);
-//////    $stmt->bindParam(':id', $id);
-////    $stmt->execute();
-////    $modes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-////    $stmt->nextRowset();
-////    $sg = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//////    $sg = $stmt->fetch();
-////    $sgCount = $stmt->rowCount();
-////
-////    $stmt->nextRowset();
-////    $sgMp = $stmt->fetchAll(PDO::FETCH_ASSOC);
-////    $sgMpCount = $stmt->rowCount();
-////    $stmt->nextRowset();
-////    $mp = $stmt->fetchAll(PDO::FETCH_ASSOC);
-////    $mpCount = $stmt->rowCount();
-////
-////    $maxRows = max($sgCount, $sgMpCount, $mpCount);
-//
-////    echo $sgCount;
-////    echo $sgMpCount;
-////    echo $mpCount;
-//
-//
-////    $resultsArray = array();
-////    while ($row = mysqli_fetch_array($sg)) {
-////        $single = $row['modes'];
-////        $resultsArray[$single][] = $row['title'];
-////    }
-////
-////
-////    $x = count($resultsArray);
-////
-////    $sgData = ( !empty($resultsArray['Single-player'][$x]) ) ? $resultsArray['Single-player'][$x] : "";
-//
-//
-////    echo "\n";
-//////    print_r($sg);
-////    echo $sg[0]['title'];
-////    echo "\n";
-//////    print_r($sgMp);
-////    echo "\n";
-//////    print_r($mp);
-////    echo "\n";
-//
-////} catch (PDOException $e) {
-////    echo $e->getMessage();
-////    die();
-////}
-//
-//$printedRecords = 0;
-//
-//?>
-<!---->
-<!--<!doctype html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport"-->
-<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--    <link rel="stylesheet" href="css/tables.css">-->
-<!--    <title>Game modes</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="content">-->
-<!--    <div class="container-md">-->
-<!--        <table class="table table-borderless">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                --><?php //foreach ($modes as $mode)
-//                    echo "<th scope='row'>" . $mode['modes']; ?>
-<!---->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            --><?php
-//            for ($i = 0;
-//                 $i < $maxRows;
-//                 $i++) {
-//                echo "<tr>";
-//                if (isset($sg[$i]['title'])) {
-//                    echo "<td>" .  $sg[$i]['title'];
-//                } else {
-//                    echo "";
-//                }
-//                if (isset($sgMp[$i]['title'])) {
-//                    echo "<td>" . $sgMp[$i]['title'];
-//                } else {
-//                    echo "";
-//                }
-//                if (isset($mp[$i]['title'])) {
-//                    echo "<td>" . $mp[$i]['title'];
-//                } else {
-//                    echo "";
-//                }
-//            }
-//            ?>
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-<!---->
+include('header.php');
+
+$dev_id = $_GET['id'];
+
+
+$sql = "SELECT * FROM developer WHERE developer_id = :id;
+SHOW COLUMNS FROM developer;
+
+SELECT developer.management_id, management_dev.management_id, management_dev.name
+FROM developer
+INNER JOIN management_dev
+ON developer.management_id = management_dev.management_id
+WHERE developer.developer_id = :id;
+
+SELECT digital_platform.platform_id, digital_platform.name, developer.platform_id
+FROM digital_platform
+INNER JOIN
+developer
+ON digital_platform.platform_id = developer.platform_id
+WHERE developer.developer_id = :id";
+
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id', $dev_id);
+$stmt->execute();
+
+
+
+$dev = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->nextRowset();
+$columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//print_r($dev);
+
+$stmt->nextRowset();
+$manag = $stmt->fetchAll(PDO::FETCH_ASSOC);
+array_shift($columns); //skip id column
+array_splice($columns, -2);
+
+$stmt->nextRowset();
+$platform = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/tables.css">
+    <title><?php echo $dev[0]['name'] ?></title>
+</head>
+<body>
+<div class="content">
+    <div class="container-md">
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <?php foreach ($columns as $item)
+                    echo "<th scope='row'>" . $item['Field'];
+                ?>
+                <?php echo "<th scope='row'>" . "Managed by";
+                if (isset($columns['Platform']))
+                    echo "<th scope='row'>" . "Platform";
+                ?>
+            </tr>
+            </thead>
+            <tbody>
+            <!--            --><?php
+            foreach ($dev as $item)
+                echo "<tr>";
+            //            echo "<td>" . $item['developer_id'];
+            echo "<td>" . $item['name'];
+            echo "<td>" . $item['HQ'];
+            echo "<td>" . $item['founded'];
+            echo "<td>" . $manag[0]['name'];
+            if (isset($platform['name'])) {
+                echo "<td>" . $platform[0]['name'];
+            }
+           ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
