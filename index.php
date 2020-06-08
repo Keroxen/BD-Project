@@ -1,9 +1,6 @@
 <?php
 
-// TODO search and sort ?
-// TODO some transitions ?
-// TODO proiectie: SELECT DISTINCT modes/genre FROM games;  afisez toate modes/genres o singura daca si jocurile care apartin
-// TODO 
+// TODO remove signup
 
 //include('config/db_connect.php');
 include('header.php');
@@ -18,7 +15,7 @@ include('header.php');
 //$con = mysqli_connect($servername, $username, $password, "games_db");
 // PDO
 //$stmt = $conn->prepare("SELECT games.id_game, games.title FROM games INNER JOIN images ON games.id_game = images.id_image");
-$stmt = $conn->prepare("SELECT id, title FROM games");
+$stmt = $conn->prepare("SELECT game_id, title FROM game");
 //$sql = "SELECT images.path FROM images INNER JOIN games ON games.id_game = images.id_image";
 //$res = mysqli_query($con, $sql);
 $stmt->execute();
@@ -73,13 +70,13 @@ $result = $stmt->fetchAll();
             <?php foreach ($result
                            as $game) : ?>
                 <div class="card">
-                    <a class="details" href="details.php?id=<?php echo $game['id'] ?>">
+                    <a class="details" href="details.php?id=<?php echo $game['game_id'] ?>">
                         <img src="<?= IMAGE_URL . $game['title'] . ".JPG" ?>">
 
                         <!--                             '<img style="border-radius: 30px; height: 300px; width: 250px" src="data:image/jpeg;base64,' . base64_encode($game['image']) . '"/>'; ?>-->
                     </a>
                     <div class="card-body">
-                        <a class="details" href="details.php?id=<?php echo $game['id'] ?>">
+                        <a class="details" href="details.php?id=<?php echo $game['game_id'] ?>">
                             <h6 class="card-title"><?php echo htmlspecialchars($game['title']);
                                 ?></h6>
                         </a>
@@ -89,7 +86,6 @@ $result = $stmt->fetchAll();
         </div>
     </div>
 </div>
-
 
 
 </body>

@@ -4,11 +4,11 @@
 include('header.php');
 
 $sql = "
-    SELECT DISTINCT modes FROM games;
+    SELECT DISTINCT modes FROM game;
 
-    SELECT title FROM games WHERE modes = 'Single-player';
-    SELECT title FROM games WHERE modes = 'Single-player, multiplayer';
-    SELECT title FROM games WHERE modes = 'Multiplayer'";
+    SELECT title FROM game WHERE modes = 'Single-player';
+    SELECT title FROM game WHERE modes = 'Single-player, multiplayer';
+    SELECT title FROM game WHERE modes = 'Multiplayer'";
 
 
 try {
