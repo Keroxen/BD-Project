@@ -83,7 +83,6 @@ $printedRecords = 0;
             <tr>
                 <?php foreach ($modes as $mode)
                     echo "<th scope='row'>" . $mode['modes']; ?>
-
             </tr>
             </thead>
             <tbody>
@@ -93,7 +92,7 @@ $printedRecords = 0;
                  $i++) {
                 echo "<tr>";
                 if (isset($sg[$i]['title'])) {
-                    echo "<td>" .  $sg[$i]['title'];
+                   echo "<td>" .  $sg[$i]['title'];
                 } else {
                     echo "";
                 }

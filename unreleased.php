@@ -1,7 +1,24 @@
 <?php
 
-//include('config/db_connect.php');
 include('header.php');
+
+
+$sql =
+    "SELECT game.game_id, game.title, game.modes, game.genre, game.release_date,
+developer.developer_id, developer.name AS 'dName', 
+publisher.publisher_id, publisher.name AS 'pName'
+FROM game
+INNER JOIN developer ON game.developer_id = developer.developer_id
+INNER JOIN publisher ON game.publisher_id = publisher.publisher_id
+WHERE game.release_date NOT IN(
+SELECT release_date
+FROM game
+WHERE release_date < CURRENT_DATE)";
+
+
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$unreleased = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -17,6 +34,34 @@ include('header.php');
 </head>
 <body>
 <div class="content">
+    <div class="container-md">
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <?php
+                echo "<th scope='row'>" . "Title";
+                echo "<th scope='row'>" . "Developer";
+                echo "<th scope='row'>" . "Publisher";
+                echo "<th scope='row'>" . "Genre";
+                echo "<th scope='row'>" . "Modes";
+                echo "<th scope='row'>" . "Release date";
+                ?>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($unreleased as $item)
+                echo "<tr>";
+            echo "<td>" . $item['title'];
+            echo "<td>" . $item['dName'];
+            echo "<td>" . $item["pName"];
+            echo "<td>" . $item['genre'];
+            echo "<td>" . $item['modes'];
+            echo "<td>" . $item['release_date'];
+            ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

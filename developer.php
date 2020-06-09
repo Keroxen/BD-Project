@@ -87,3 +87,29 @@ $platform = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 </body>
 </html>
+
+
+$sql = "SELECT *
+FROM game
+WHERE release_date  NOT IN (
+SELECT release_date
+FROM game
+WHERE release_date < CURRENT_DATE);
+
+SHOW COLUMNS FROM developer";
+
+
+
+
+try {
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$unreleased = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->nextRowset();
+$columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+} catch (PDOException $e) {
+echo $e->getMessage();
+die();
