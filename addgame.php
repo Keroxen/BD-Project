@@ -71,7 +71,7 @@ include('header.php');
 //        $query = "INSERT INTO games (title, image, release_date) values('$title', '$fullPath' , '2018-04-12')";
 //         $query = "INSERT INTO games (title, release_date) VALUES ($title, '2018-02-03')";
 //        mysqli_query($conn, $query) or trigger_error("Query Failed! SQL: $query - Error: ".mysqli_error($conn), E_USER_ERROR);
-        $stmt = $conn->prepare("INSERT INTO games (title, release_date) VALUES (:title, '2018-02-03')");
+        $stmt = $conn->prepare("INSERT INTO games (title) VALUES (:title)");
         $stmt->execute(['title' => $title]);
 //    mysqli_query($con, $query) or die(mysqli_error($con);
 

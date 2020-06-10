@@ -1,40 +1,35 @@
 <?php
 
-//include('config/db_connect.php');
 include('header.php');
 
-//$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);
-
-//$id = $_GET['id'];
-
-//    $stmt = $conn->prepare("SELECT * FROM games WHERE id = :id");
 $sql = "
-SELECT name, developer_id FROM developer
-UNION DISTINCT 
-SELECT name, publisher_id FROM publisher;
 
-SELECT game.title, game.game_id, developer.name, publisher.name, developer.developer_id, publisher.publisher_id 
+
+SELECT name, developer_id as id
+FROM
+(
+    SELECT name, developer_id FROM developer
+    UNION ALL
+    SELECT name, publisher_id FROM publisher
+) id
+GROUP BY name
+;
+
+SELECT game.title, game.game_id, developer.name AS 'dName', publisher.name AS 'pName', developer.developer_id, publisher.publisher_id 
 FROM game
 INNER JOIN developer 
 ON developer.developer_id = game.developer_id
 INNER JOIN publisher
 ON publisher.publisher_id = game.publisher_id";
 
+$count = 0;
 
 try {
     $stmt = $conn->prepare($sql);
-//    $stmt->bindParam(':id', $id);
     $stmt->execute();
-
     $devs_pubs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->nextRowset();
     $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//    $stmt->nextRowset();
-//    $pub = $stmt->fetch(PDO::FETCH_ASSOC);
-//    $stmt->nextRowset();
-//    $platf = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    print_r($games);
 
 } catch (PDOException $e) {
     echo $e->getMessage();
@@ -52,32 +47,42 @@ try {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/tables.css">
-    <title>Game modes</title>
+    <title>Developers and publishers</title>
 
 </head>
 <body>
 <div class="content">
-    <table class="table table-borderless ">
-        <thead>
-        <tr>
-            <th scope="col">Companies</th>
-            <th scope="col">Developed</th>
-            <th scope="col">Published</th>
-            <th scope="col">Developed and published</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($devs_pubs as $item)
+    <div class="container">
+        <div class="row">
+            <div class="bg">
+                <div class="col">
+                    <?php foreach ($devs_pubs as $item):
+                        $count++;
+                        echo "<h2 class='h2_dp'>" . $item['name'] . "</h2>";
 
-            echo "<tr>" .
-                "<td>" . $item['name'];
-                foreach ($games as $game)
-                if ($game['developer_id'] == $item['developer_id']) {
-                    echo "<td>" . $game['title'];
-                }
-        ?>
-        </tbody>
-    </table>
-</div>
+                        foreach ($games as $game):
+                            if ($game['dName'] == $item['name'] && $game['pName'] != $item['name']) {
+                                echo "<li class='li_dp'>" . "Developed: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
+                            }
+                            if ($game['pName'] == $item['name'] && $game['dName'] != $item['name']) {
+                                echo "<li class='li_dp'>" . "Published: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
+                            }
+                            if ($game['dName'] == $item['name'] && $game['pName'] == $item['name']) {
+                                echo "<li class='li_dp'>" . "Developed and published: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
+                            }
+                            if ($count >= 10) {
+                                echo "</div>";
+                                echo "<div class='col'>";
+
+                            }
+                        endforeach;
+                    endforeach;
+
+                    ?>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

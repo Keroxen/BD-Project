@@ -11,6 +11,11 @@ define('IMAGE_URL', 'uploads/');
 //    $_SESSION['mailuid'] = $sessionUid;
 //}
 
+// TODO add 1-2 more unreleased games
+// TODO add, update, delete game
+// TODO add 1 Valve game
+// TODO normalizare
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +25,8 @@ define('IMAGE_URL', 'uploads/');
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/80feeba069.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
@@ -63,6 +70,11 @@ define('IMAGE_URL', 'uploads/');
                 <a class="nav-link btn btn-primary" href="unreleased.php">Show unreleased games</a>
             </li>
         </ul>
+        <a target="_blank" href="#" class="doc">Documentatie</a>
+        <a target="_blank" href="https://github.com/Keroxen/BD-Project" class="github">
+            <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+
         <?php if ($_SESSION['userUid'] != "guest") {
             echo '<ul class="navbar-nav ml-auto">
             <li class="nav-item active">
