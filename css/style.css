@@ -91,6 +91,10 @@
 /*    margin-right: 20px;*/
 /*}*/
 
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
 .content:before {
     content: "";
     position: fixed;
@@ -201,13 +205,14 @@ h6 {
 .content img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.69);
     border-radius: 30px;
-    height: 300px;
-    width: 250px;
+    height: 320px;
+    width: 300px;
+    /*margin: 50px;*/
 }
 
 .container-fluid img {
     /*width: 250px;*/
-    height: 700px;
+    height: 650px;
 }
 
 body {
@@ -246,4 +251,69 @@ body {
 .logo {
     height: 50px;
     width: 50px;
+}
+
+.h2_dp {
+    color: #fff1f2;
+}
+
+.detail {
+    padding-bottom: 10px;
+    font-size: 233px;
+    color: white;
+}
+
+.li_dp {
+
+}
+
+.h1 {
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    padding-bottom: 50px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.column {
+    display: block;
+    float: left;
+    width: 50%;
+}
+
+.doc {
+    margin-right: 30px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+
+}
+
+.github {
+    color: white;
+    font-size: 25px;
+}
+
+.github:hover, .doc:hover {
+    color: white;
+}
+
+.li_dp {
+    padding-left: 15px;
+    list-style: none;
+    color: red !important;
+    font-size: 20px;
+}
+
+.bg {
+    background-color: rgba(0, 0, 0, 0.84);
+    border-radius: 30px;
+}
+
+.h2_dp {
+    text-align: center;
 }

@@ -89,21 +89,23 @@ if (isset($_GET['id'])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $game['title'] ?></title>
+    <style>
+        body {
+           background: url(./images/cool-background.png);
+            background-size:cover;
+        }
+    </style>
 </head>
 
 <body>
 <div class="h1 text-center">
-    <!--        --><?php //foreach ($game
-
-    //            as $game) :
-    echo $game['title'] . '<br>';
-
-
+    <?php echo $game['title'] . '<br>';
     ?>
 </div>
+<div class="content">
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -112,13 +114,13 @@ if (isset($_GET['id'])) {
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="uploads/cyberpunk%202077.jpg" class="d-block w-100" alt="...">
+                        <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 1" . ".jpg";  ?>" class="d-block w-100" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img src="uploads/apex%20legends.jpg" class="d-block w-100" alt="...">
+                        <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 2" . ".jpg";  ?>" class="d-block w-100" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img src="uploads/the%20elder%20scrolls%20v%20skyrim.jpg" class="d-block w-100" alt="...">
+                        <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 3" . ".jpg";  ?>" class="d-block w-100" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -142,26 +144,26 @@ if (isset($_GET['id'])) {
             //                } ?>
             <!--            </form>-->
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <?php
-            echo "Title: " . $game['title'] . '<br>';
-            echo "Developer: " . "<a href='developer.php?id=$developer_id'>" . $dev['name'] . "</a>" . "<br>";
-            echo "Publisher: " . "<a href='publisher.php?id=$publisher_id'>" . $pub['name'] . "</a>" . "<br>";
-            echo "Modes: " . $game['modes'] . '<br>';
-            echo "Genre: " . $game['genre'] . '<br>';
-            echo "Digital distribution service: ";
+            echo "<div class='detail'>" ."Title: " . $game['title'] . '<br>' . "</div>";
+            echo "<div class='detail'>" ."Developer: " . "<a href='developer.php?id=$developer_id'>" . $dev['name'] . "</a>" . "<br>". "</div>";
+            echo "<div class='detail'>" ."Publisher: " . "<a href='publisher.php?id=$publisher_id'>" . $pub['name'] . "</a>" . "<br>". "</div>";
+            echo "<div class='detail'>" ."Modes: " . $game['modes'] . '<br>'. "</div>";
+            echo "<div class='detail'>" ."Genre: " . $game['genre'] . '<br>'. "</div>";
+            echo "<div class='detail'>" ."Digital distribution service: ";
             foreach ($platf as $key => $item) {
                 $platfName = $item['name'];
                 echo $platfName . ' ';
             }
             echo '<br>';
-            echo "Release date: " . $game['release_date'] . '<br>';
+            echo "Release date: " . $game['release_date'] . '<br>' . "</div>";
 
             ?>
 
         </div>
     </div>
-
+</div>
 </body>
 
 </html>
