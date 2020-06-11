@@ -92,7 +92,7 @@
 /*}*/
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'robotoregular', sans-serif;
 }
 
 .content:before {
@@ -259,7 +259,7 @@ body {
 
 .detail {
     padding-bottom: 10px;
-    font-size: 233px;
+    font-size: 30px;
     color: white;
 }
 
@@ -268,11 +268,16 @@ body {
 }
 
 .h1 {
-    font-size: 50px;
+    /*font-family: 'AnimeAce2.0BB' !important;*/
+    font-size: 60px;
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 1;
     padding-bottom: 50px;
+    color: black;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 a:hover {
@@ -287,6 +292,7 @@ a:hover {
 
 .doc {
     margin-right: 30px;
+    margin-left: -50px !important;
     text-decoration: none;
     font-size: 20px;
     color: white;
@@ -296,6 +302,7 @@ a:hover {
 .github {
     color: white;
     font-size: 25px;
+    margin-right: 185px !important;
 }
 
 .github:hover, .doc:hover {
@@ -305,15 +312,20 @@ a:hover {
 .li_dp {
     padding-left: 15px;
     list-style: none;
-    color: red !important;
+    color: #ca1515 !important;
     font-size: 20px;
 }
 
 .bg {
-    background-color: rgba(0, 0, 0, 0.84);
-    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.83);
+    border-radius: 25px;
 }
 
 .h2_dp {
     text-align: center;
+    margin-top: 30px;
+}
+
+form {
+    margin-left: 50px;
 }

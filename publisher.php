@@ -6,7 +6,7 @@ $pub_id = $_GET['id'];
 
 
 $sql = "SELECT * FROM publisher WHERE publisher_id = :id;
-SHOW COLUMNS FROM publisher;
+
 
 SELECT publisher.management_id, management_pub.management_id, management_pub.name
 FROM publisher
@@ -27,14 +27,14 @@ $stmt->execute();
 
 
 $pub = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->nextRowset();
-$columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//$stmt->nextRowset();
+//$columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //print_r($dev);
 
 $stmt->nextRowset();
 $manag = $stmt->fetchAll(PDO::FETCH_ASSOC);
-array_shift($columns); //skip id column
-array_splice($columns, -1);
+//array_shift($columns); //skip id column
+//array_splice($columns, -1);
 
 //$stmt->nextRowset();
 //$platform = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -58,10 +58,11 @@ array_splice($columns, -1);
         <table class="table table-borderless">
             <thead>
             <tr>
-                <?php foreach ($columns as $item)
-                    echo "<th scope='row'>" . $item['Field'];
-                ?>
-                <?php echo "<th scope='row'>" . "Managed by";
+
+                <?php echo "<th scope='row'>" . "Name";
+                echo "<th scope='row'>" . "HQ";
+                echo "<th scope='row'>" . "Founded";
+                echo "<th scope='row'>" . "Managed by";
                 ?>
             </tr>
             </thead>

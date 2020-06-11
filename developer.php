@@ -6,7 +6,7 @@ $dev_id = $_GET['id'];
 
 
 $sql = "SELECT * FROM developer WHERE developer_id = :id;
-SHOW COLUMNS FROM developer;
+
 
 SELECT developer.management_id, management_dev.management_id, management_dev.name
 FROM developer
@@ -28,17 +28,18 @@ $stmt->execute();
 
 
 $dev = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->nextRowset();
-$columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//$stmt->nextRowset();
+//$columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //print_r($dev);
 
 $stmt->nextRowset();
 $manag = $stmt->fetchAll(PDO::FETCH_ASSOC);
-array_shift($columns); //skip id column
-array_splice($columns, -2);
+
+//array_shift($columns); //skip id column
+//array_splice($columns, -2);
 
 $stmt->nextRowset();
-$platform = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$platform = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -59,11 +60,12 @@ $platform = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <table class="table table-borderless">
             <thead>
             <tr>
-                <?php foreach ($columns as $item)
-                    echo "<th scope='row'>" . $item['Field'];
-                ?>
-                <?php echo "<th scope='row'>" . "Managed by";
-                if (isset($columns['Platform']))
+
+                <?php echo "<th scope='row'>" . "Name";
+                echo "<th scope='row'>" . "HQ";
+                echo "<th scope='row'>" . "Founded";
+                echo "<th scope='row'>" . "Managed by";
+                if (isset($platform['name']))
                     echo "<th scope='row'>" . "Platform";
                 ?>
             </tr>
@@ -72,13 +74,12 @@ $platform = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <!--            --><?php
             foreach ($dev as $item)
                 echo "<tr>";
-            //            echo "<td>" . $item['developer_id'];
             echo "<td>" . $item['name'];
             echo "<td>" . $item['HQ'];
             echo "<td>" . $item['founded'];
             echo "<td>" . $manag[0]['name'];
             if (isset($platform['name'])) {
-                echo "<td>" . $platform[0]['name'];
+                echo "<td>" . $platform['name'];
             }
            ?>
             </tbody>

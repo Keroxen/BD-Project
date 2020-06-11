@@ -6,9 +6,9 @@ include('header.php');
 $sql = "
     SELECT DISTINCT modes FROM game;
 
-    SELECT title FROM game WHERE modes = 'Single-player';
-    SELECT title FROM game WHERE modes = 'Single-player, multiplayer';
-    SELECT title FROM game WHERE modes = 'Multiplayer'";
+    SELECT game_id, title FROM game WHERE modes = 'Single-player';
+    SELECT game_id, title FROM game WHERE modes = 'Single-player, multiplayer';
+    SELECT game_id, title FROM game WHERE modes = 'Multiplayer'";
 
 
 try {
@@ -92,17 +92,17 @@ $printedRecords = 0;
                  $i++) {
                 echo "<tr>";
                 if (isset($sg[$i]['title'])) {
-                   echo "<td>" .  $sg[$i]['title'];
+                   echo "<td>" .  "<a href=\"details.php?id={$sg[$i]['game_id']}\">" . $sg[$i]['title'] . "</a>" . "</li>";
                 } else {
                     echo "";
                 }
                 if (isset($sgMp[$i]['title'])) {
-                    echo "<td>" . $sgMp[$i]['title'];
+                    echo "<td>" .  "<a href=\"details.php?id={$sgMp[$i]['game_id']}\">" . $sgMp[$i]['title'] . "</a>" . "</li>";
                 } else {
                     echo "";
                 }
                 if (isset($mp[$i]['title'])) {
-                    echo "<td>" . $mp[$i]['title'];
+                    echo "<td>" .  "<a href=\"details.php?id={$mp[$i]['game_id']}\">" . $mp[$i]['title'] . "</a>" . "</li>";
                 } else {
                     echo "";
                 }

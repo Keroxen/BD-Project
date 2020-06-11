@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'AnimeAce2.0BB';
+  src: url('AnimeAce2.0BB.svg#AnimeAce2.0BB') format('svg'),
+    url('AnimeAce2.0BB.ttf') format('truetype'),
+    url('AnimeAce2.0BB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AnimeAce20Bb-K97';
+  src: url('AnimeAce20Bb-K97.eot');
+  src: url('AnimeAce20Bb-K97.eot?#iefix') format('embedded-opentype'),
+    url('AnimeAce20Bb-K97.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

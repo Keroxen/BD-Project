@@ -1,6 +1,6 @@
 <?php
 
-include('config/db_connect.php');
+
 include('header.php');
 //extract($_POST);
 //
@@ -48,6 +48,19 @@ include('header.php');
 
 //$con = mysqli_connect($servername, $username, $password, "games_db");
 
+
+$sql = "SELECT developer_id, name FROM developer;
+SELECT publisher_id, name FROM publisher";
+
+$stmt = $conn->prepare($sql);
+//$stmt->bindParam(':id', $pub_id);
+$stmt->execute();
+
+
+$devs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->nextRowset();
+$pubs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 
@@ -56,7 +69,6 @@ include('header.php');
 //    $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);
 
     $title = $_POST["title"];
-
     $name = $_FILES['image']['name'];
     $target_dir = "uploads/";
     $fullPath = $target_dir . "/" . $name;
@@ -103,12 +115,57 @@ include('header.php');
     <title>Add a game</title>
 </head>
 <body>
-
-<form action="addgame.php" method="POST" enctype="multipart/form-data">
-    <label>Title: </label>
-    <input type="text" name="title">
-    <input type="file" name="image">
-    <input type="submit" name="submit" value="Add game">
-</form>
+<h1 class="">Add a game</h1>
+<!--<div class="container">-->
+    <form action="addgame.php" method="POST" enctype="multipart/form-data">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputTitle">Title</label>
+                    <input type="text" class="form-control" id="inputTitle">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputGenre">Genre</label>
+                    <input type="text" class="form-control" id="inputGenre"
+                           placeholder="First-person shooter, Action-adventure...">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputModes">Modes</label>
+                    <input type="text" class="form-control" id="inputModes" placeholder="Single-player, multiplayer...">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputDate">Release date</label>
+                    <input type="date" class="form-control" id="inputDate">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputDev">Choose developer</label>
+                    <select id="inputDev" class="form-control">
+                        <option selected>Choose...</option>
+                        <?php foreach ($devs as $dev)
+                            echo "<option value='" . $dev['name'] . "'>" . $dev['name'] . "</option>";
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputPub">Choose publisher</label>
+                    <select id="inputPub" class="form-control">
+                        <option selected>Choose...</option>
+                        <?php foreach ($pubs as $pub)
+                            echo "<option value='" . $pub['name'] . "'>" . $pub['name'] . "</option>";
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputImage">Upload game preview image</label>
+                <input type="file" class="form-control-file" id="inputImage">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+<!--</div>-->
 </body>
 </html>

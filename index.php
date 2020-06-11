@@ -1,8 +1,6 @@
 <?php
 
-// TODO remove signup
 
-//include('config/db_connect.php');
 include('header.php');
 
 //$sql = 'SELECT id_game, title FROM games ORDER BY id';
@@ -65,7 +63,7 @@ $result = $stmt->fetchAll();
 
 <div class="content">
     <div class="container">
-        <h1 class="header">Test</h1>
+        <h1 class="header">All games</h1>
         <div class="row">
             <?php foreach ($result
                            as $game) : ?>

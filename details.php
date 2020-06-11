@@ -48,7 +48,6 @@ if (isset($_GET['id'])) {
     WHERE game_platform.game_id = :id";
 
 
-
     try {
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id', $game_id);
@@ -91,8 +90,8 @@ if (isset($_GET['id'])) {
     <title><?php echo $game['title'] ?></title>
     <style>
         body {
-           background: url(./images/cool-background.png);
-            background-size:cover;
+            background: url(./images/cool-background.png);
+            background-size: cover;
         }
     </style>
 </head>
@@ -103,67 +102,70 @@ if (isset($_GET['id'])) {
     ?>
 </div>
 <div class="content">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-7">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 1" . ".jpg";  ?>" class="d-block w-100" alt="First slide">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 1" . ".jpg"; ?>"
+                                 class="d-block w-100" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 2" . ".jpg"; ?>"
+                                 class="d-block w-100" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 3" . ".jpg"; ?>"
+                                 class="d-block w-100" alt="Third slide">
+                        </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 2" . ".jpg";  ?>" class="d-block w-100" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="uploads/carousel/<?php echo strtolower($game['title']) . " 3" . ".jpg";  ?>" class="d-block w-100" alt="Third slide">
-                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <!--            <img class="about-img" src="--><?php //= IMAGE_URL . $game['title'] . ".JPG" ?><!--">-->
+                <!--         '<img style="border-radius: 30px; height: 300px; wgame_idth: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '">';-->
+                <!--            --><?php //endforeach;
+                ?>
+                <!--            <form action="details.php" method="POST">-->
+                <!--                <input type="hgame_idden" name="game_id" value="-->
+                <?php //echo $_GET['game_id']; ?><!--">-->
+                <!--                --><?php //if ($_SESSION['userUgame_id'] != 'guest') {
+                //                    echo '<input type="submit" name="delete" value="Delete game" class="btn">';
+                //                } ?>
+                <!--            </form>-->
             </div>
-            <!--            <img class="about-img" src="--><?php //= IMAGE_URL . $game['title'] . ".JPG" ?><!--">-->
-            <!--         '<img style="border-radius: 30px; height: 300px; wgame_idth: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '">';-->
-            <!--            --><?php //endforeach;
-            ?>
-            <!--            <form action="details.php" method="POST">-->
-            <!--                <input type="hgame_idden" name="game_id" value="-->
-            <?php //echo $_GET['game_id']; ?><!--">-->
-            <!--                --><?php //if ($_SESSION['userUgame_id'] != 'guest') {
-            //                    echo '<input type="submit" name="delete" value="Delete game" class="btn">';
-            //                } ?>
-            <!--            </form>-->
-        </div>
-        <div class="col-md-4">
-            <?php
-            echo "<div class='detail'>" ."Title: " . $game['title'] . '<br>' . "</div>";
-            echo "<div class='detail'>" ."Developer: " . "<a href='developer.php?id=$developer_id'>" . $dev['name'] . "</a>" . "<br>". "</div>";
-            echo "<div class='detail'>" ."Publisher: " . "<a href='publisher.php?id=$publisher_id'>" . $pub['name'] . "</a>" . "<br>". "</div>";
-            echo "<div class='detail'>" ."Modes: " . $game['modes'] . '<br>'. "</div>";
-            echo "<div class='detail'>" ."Genre: " . $game['genre'] . '<br>'. "</div>";
-            echo "<div class='detail'>" ."Digital distribution service: ";
-            foreach ($platf as $key => $item) {
-                $platfName = $item['name'];
-                echo $platfName . ' ';
-            }
-            echo '<br>';
-            echo "Release date: " . $game['release_date'] . '<br>' . "</div>";
+            <div class="col-md-5">
+                <?php
+                echo "<div class='detail'>" . "Title: " . $game['title'] . '<br>' . "</div>";
+                echo "<div class='detail'>" . "Developer: " . "<a href='developer.php?id=$developer_id'>" . $dev['name'] . "</a>" . "<br>" . "</div>";
+                echo "<div class='detail'>" . "Publisher: " . "<a href='publisher.php?id=$publisher_id'>" . $pub['name'] . "</a>" . "<br>" . "</div>";
+                echo "<div class='detail'>" . "Modes: " . $game['modes'] . '<br>' . "</div>";
+                echo "<div class='detail'>" . "Genre: " . $game['genre'] . '<br>' . "</div>";
+                echo "<div class='detail'>" . "Digital distribution service: ";
+                foreach ($platf as $key => $item) {
+                    $platfName = $item['name'];
+                    echo $platfName . ' ';
+                }
+                echo '<br>';
+                echo "Release date: " . $game['release_date'] . '<br>' . "</div>";
 
-            ?>
+                ?>
 
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>

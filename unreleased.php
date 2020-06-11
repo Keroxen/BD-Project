@@ -20,6 +20,7 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 $unreleased = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 ?>
 
 <!doctype html>
@@ -50,15 +51,15 @@ $unreleased = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
             <?php
-            foreach ($unreleased as $item)
+            foreach ($unreleased as $item):
                 echo "<tr>";
-            echo "<td>" . $item['title'];
-            echo "<td>" . $item['dName'];
-            echo "<td>" . $item["pName"];
-            echo "<td>" . $item['genre'];
-            echo "<td>" . $item['modes'];
-            echo "<td>" . $item['release_date'];
-            ?>
+                echo "<td>" . "<a href=\"details.php?id={$item['game_id']}\">" . $item['title'] . "</a>" . "</li>";
+                echo "<td>" . "<a href=\"developer.php?id={$item['developer_id']}\">" . $item['dName'] . "</a>" . "</li>";
+                echo "<td>" . "<a href=\"publisher.php?id={$item['publisher_id']}\">" . $item['pName'] . "</a>" . "</li>";
+                echo "<td>" . $item['genre'];
+                echo "<td>" . $item['modes'];
+                echo "<td>" . $item['release_date'];
+            endforeach; ?>
             </tbody>
         </table>
     </div>

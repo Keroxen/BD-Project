@@ -11,9 +11,8 @@ define('IMAGE_URL', 'uploads/');
 //    $_SESSION['mailuid'] = $sessionUid;
 //}
 
-// TODO add 1-2 more unreleased games
 // TODO add, update, delete game
-// TODO add 1 Valve game
+// TODO href pentru platforme
 // TODO normalizare
 
 ?>
