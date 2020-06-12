@@ -65,20 +65,22 @@ if (isset($_GET['id'])) {
 
 }
 
-if (isset($_POST['delete'])) {
-    $game_id = $_POST['delete_id'];
-//    $stmt = $conn->prepare("DELETE g, p FROM game g
-//    JOIN game_platform p ON g.game_id = p.game_id
-//    WHERE g.game_id = :game_id");
+// working...
 
-    $stmt = $conn->prepare("DELETE FROM game WHERE  JOIN game_platform ON game.game");
-    $stmt->bindParam(':game_id', $game_id);
-    if ($stmt->execute()) {
-        header('Location: index.php');
-    } else {
-        print_r($stmt->errorInfo());
-    }
-}
+//if (isset($_POST['delete'])) {
+//    $game_id = $_POST['delete_id'];
+////    $stmt = $conn->prepare("DELETE g, p FROM game g
+////    JOIN game_platform p ON g.game_id = p.game_id
+////    WHERE g.game_id = :game_id");
+//
+//    $stmt = $conn->prepare("DELETE FROM game WHERE  JOIN game_platform ON game.game");
+//    $stmt->bindParam(':game_id', $game_id);
+//    if ($stmt->execute()) {
+//        header('Location: index.php');
+//    } else {
+//        print_r($stmt->errorInfo());
+//    }
+//}
 
 ?>
 
