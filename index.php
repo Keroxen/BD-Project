@@ -13,7 +13,7 @@ include('header.php');
 //$con = mysqli_connect($servername, $username, $password, "games_db");
 // PDO
 //$stmt = $conn->prepare("SELECT games.id_game, games.title FROM games INNER JOIN images ON games.id_game = images.id_image");
-$stmt = $conn->prepare("SELECT game_id, title FROM game");
+$stmt = $conn->prepare("SELECT game_id, title, imagePath FROM game");
 //$sql = "SELECT images.path FROM images INNER JOIN games ON games.id_game = images.id_image";
 //$res = mysqli_query($con, $sql);
 $stmt->execute();
@@ -69,8 +69,9 @@ $result = $stmt->fetchAll();
                            as $game) : ?>
                 <div class="card">
                     <a class="details" href="details.php?id=<?php echo $game['game_id'] ?>">
-                        <img src="<?= IMAGE_URL . $game['title'] . ".JPG" ?>">
-
+<!--                        <img src="--><?//= IMAGE_URL . $game['title'] . ".JPG" ?><!--">-->
+                        <?php echo "<img src='".$game['imagePath']."' />";
+                        //echo '<img src="<?= IMAGE_URL . $game[\'title\'] . ".JPG" "'  ?>
                         <!--                             '<img style="border-radius: 30px; height: 300px; width: 250px" src="data:image/jpeg;base64,' . base64_encode($game['image']) . '"/>'; ?>-->
                     </a>
                     <div class="card-body">

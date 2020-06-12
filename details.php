@@ -7,17 +7,6 @@ ini_set('display_errors', 1);
 include('header.php');
 
 // delete a game from DB
-if (isset($_POST['delete'])) {
-    $game_id = $_POST['id'];
-    $stmt = $conn->prepare("DELETE FROM game WHERE game_id = :id");
-    $stmt->bindParam(':id', $game_id);
-    $stmt->execute();
-    if ($stmt->rowCount()) {
-        header('Location: index.php');
-    } else {
-        print_r($stmt->errorInfo());
-    }
-}
 
 
 // fetch all the data about a game
@@ -76,6 +65,20 @@ if (isset($_GET['id'])) {
 
 }
 
+if (isset($_POST['delete'])) {
+    $game_id = $_POST['delete_id'];
+//    $stmt = $conn->prepare("DELETE g, p FROM game g
+//    JOIN game_platform p ON g.game_id = p.game_id
+//    WHERE g.game_id = :game_id");
+
+    $stmt = $conn->prepare("DELETE FROM game WHERE  JOIN game_platform ON game.game");
+    $stmt->bindParam(':game_id', $game_id);
+    if ($stmt->execute()) {
+        header('Location: index.php');
+    } else {
+        print_r($stmt->errorInfo());
+    }
+}
 
 ?>
 
@@ -138,31 +141,43 @@ if (isset($_GET['id'])) {
                 <!--         '<img style="border-radius: 30px; height: 300px; wgame_idth: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '">';-->
                 <!--            --><?php //endforeach;
                 ?>
-                <!--            <form action="details.php" method="POST">-->
-                <!--                <input type="hgame_idden" name="game_id" value="-->
-                <?php //echo $_GET['game_id']; ?><!--">-->
-                <!--                --><?php //if ($_SESSION['userUgame_id'] != 'guest') {
-                //                    echo '<input type="submit" name="delete" value="Delete game" class="btn">';
-                //                } ?>
-                <!--            </form>-->
+
             </div>
             <div class="col-md-5">
-                <?php
-                echo "<div class='detail'>" . "Title: " . $game['title'] . '<br>' . "</div>";
-                echo "<div class='detail'>" . "Developer: " . "<a href='developer.php?id=$developer_id'>" . $dev['name'] . "</a>" . "<br>" . "</div>";
-                echo "<div class='detail'>" . "Publisher: " . "<a href='publisher.php?id=$publisher_id'>" . $pub['name'] . "</a>" . "<br>" . "</div>";
-                echo "<div class='detail'>" . "Modes: " . $game['modes'] . '<br>' . "</div>";
-                echo "<div class='detail'>" . "Genre: " . $game['genre'] . '<br>' . "</div>";
-                echo "<div class='detail'>" . "Digital distribution service: ";
-                foreach ($platf as $key => $item) {
-                    $platfName = $item['name'];
-                    echo $platfName . ' ';
-                }
-                echo '<br>';
-                echo "Release date: " . $game['release_date'] . '<br>' . "</div>";
+                <div class="bg">
+                    <?php
+                    echo "<div class='detail'>" . "Title: " . $game['title'] . '<br>' . "</div>";
+                    echo "<div class='detail'>" . "Developer: " . "<a href='developer.php?id=$developer_id'>" . $dev['name'] . "</a>" . "<br>" . "</div>";
+                    echo "<div class='detail'>" . "Publisher: " . "<a href='publisher.php?id=$publisher_id'>" . $pub['name'] . "</a>" . "<br>" . "</div>";
+                    echo "<div class='detail'>" . "Modes: " . $game['modes'] . '<br>' . "</div>";
+                    echo "<div class='detail'>" . "Genre: " . $game['genre'] . '<br>' . "</div>";
+                    echo "<div class='detail'>" . "Digital distribution service: ";
+                    foreach ($platf as $key => $item) {
+                        $platfName = $item['name'];
+                        echo $platfName . ' ';
+                    }
+                    echo '<br>';
+                    echo "Release date: " . $game['release_date'] . '<br>' . "</div>";
 
+                    ?>
+                </div>
+                <?php if ($_SESSION['userUid'] != 'guest') {
+                    echo '<form action="details.php" method="POST">
+                             <input type="hidden" name="delete_id" value="' . $game_id . '">'
+                        . '<input type="submit" name="delete" value="Delete game" class="btn btn-primary">'
+                        . "</form>";
+
+                }
                 ?>
 
+
+                <!--                <form action="details.php" method="POST">-->
+                <!--                    <input type="hidden" name="id" value="-->
+                <!--                --><?php //echo $_GET['game_id']; ?><!--">-->
+                <!--                    --><?php //if ($_SESSION['userUid'] != 'guest') {
+                //                        echo '<input type="submit" name="delete" value="Delete game" class="btn btn-primary">';
+                //                    } ?>
+                <!--                </form>-->
             </div>
         </div>
     </div>

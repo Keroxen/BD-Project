@@ -12,7 +12,8 @@ define('IMAGE_URL', 'uploads/');
 //}
 
 // TODO add, update, delete game
-// TODO href pentru platforme
+// TODO film adapt in details
+// TODO search by name in index?
 // TODO normalizare
 
 ?>
