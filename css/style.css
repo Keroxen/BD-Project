@@ -92,7 +92,15 @@
 /*}*/
 
 * {
-    font-family: 'robotoregular', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, .h1 {
+    font-family: 'MuseoModerno', cursive;
+    color: black;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
 
 .content:before {
@@ -263,9 +271,7 @@ body {
     color: white;
 }
 
-.li_dp {
 
-}
 
 .h1 {
     /*font-family: 'AnimeAce2.0BB' !important;*/
@@ -312,14 +318,22 @@ a:hover {
 .li_dp {
     padding-left: 15px;
     list-style: none;
-    color: #ca1515 !important;
+    color: #ff2424 !important;
     font-size: 20px;
 }
 
 .bg {
+    text-align: center;
     background-color: rgba(0, 0, 0, 0.83);
     border-radius: 25px;
     padding-left: 15px;
+    margin: 0 auto;
+}
+
+.modes {
+    text-align: center;
+    color: white;
+    font-size: 25px;
 }
 
 .h2_dp {
@@ -327,6 +341,50 @@ a:hover {
     margin-top: 30px;
 }
 
-form {
-    margin-left: 50px;
+.addGame {
+    color: #ae0cff;
+    text-align: center;
+    font-size: 55px;
+    margin-bottom: 70px;
+}
+
+.addForm {
+   padding-top: 20px;
+    text-align: center;
+    background-color: rgba(124, 124, 124, 0.85) !important;
+    border-radius: 25px;
+    padding-left: 130px;
+    padding-bottom: 20px;
+}
+
+.form-control-file {
+    text-align: center !important;
+    width: 30%;
+}
+
+input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+label {
+    color: yellow !important;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.form-inline {
+    margin: 0 auto;
+    display: table;
+}
+
+.delete-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px !important;
 }

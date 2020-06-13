@@ -51,7 +51,8 @@ if (isset($_GET['id'])) {
         $pub = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->nextRowset();
         $platf = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        $stmt->nextRowset();
+        $film = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $developer_id = $dev['developer_id'];
         $publisher_id = $pub['publisher_id'];
@@ -67,20 +68,16 @@ if (isset($_GET['id'])) {
 
 // working...
 
-//if (isset($_POST['delete'])) {
-//    $game_id = $_POST['delete_id'];
-////    $stmt = $conn->prepare("DELETE g, p FROM game g
-////    JOIN game_platform p ON g.game_id = p.game_id
-////    WHERE g.game_id = :game_id");
-//
-//    $stmt = $conn->prepare("DELETE FROM game WHERE  JOIN game_platform ON game.game");
-//    $stmt->bindParam(':game_id', $game_id);
-//    if ($stmt->execute()) {
-//        header('Location: index.php');
-//    } else {
-//        print_r($stmt->errorInfo());
-//    }
-//}
+if (isset($_POST['delete'])) {
+    $game_id = $_POST['delete_id'];
+    $stmt = $conn->prepare("DELETE game, game_platform FROM game INNER JOIN game_platform WHERE game.game_id = game_platform.game_id AND game.game_id = :game_id");
+    $stmt->bindParam(':game_id', $game_id);
+    if ($stmt->execute()) {
+        header('Location: index.php');
+    } else {
+        print_r($stmt->errorInfo());
+    }
+}
 
 ?>
 
@@ -93,12 +90,6 @@ if (isset($_GET['id'])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $game['title'] ?></title>
-    <style>
-        body {
-            background: url(./images/cool-background.png);
-            background-size: cover;
-        }
-    </style>
 </head>
 
 <body>
@@ -139,11 +130,6 @@ if (isset($_GET['id'])) {
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <!--            <img class="about-img" src="--><?php //= IMAGE_URL . $game['title'] . ".JPG" ?><!--">-->
-                <!--         '<img style="border-radius: 30px; height: 300px; wgame_idth: 250px"; src="data:image/jpeg;base64,' . base64_encode($game['image']) . '">';-->
-                <!--            --><?php //endforeach;
-                ?>
-
             </div>
             <div class="col-md-5">
                 <div class="bg">
@@ -160,29 +146,17 @@ if (isset($_GET['id'])) {
                     }
                     echo '<br>';
                     echo "Release date: " . $game['release_date'] . '<br>' . "</div>";
-
                     ?>
                 </div>
                 <?php if ($_SESSION['userUid'] != 'guest') {
                     echo '<form action="details.php" method="POST">
                              <input type="hidden" name="delete_id" value="' . $game_id . '">'
-                        . '<input type="submit" name="delete" value="Delete game" class="btn btn-primary">'
+                        . '<input type="submit" name="delete" value="Delete game" class="btn btn-danger delete-btn">'
                         . "</form>";
-
                 }
                 ?>
-
-
-                <!--                <form action="details.php" method="POST">-->
-                <!--                    <input type="hidden" name="id" value="-->
-                <!--                --><?php //echo $_GET['game_id']; ?><!--">-->
-                <!--                    --><?php //if ($_SESSION['userUid'] != 'guest') {
-                //                        echo '<input type="submit" name="delete" value="Delete game" class="btn btn-primary">';
-                //                    } ?>
-                <!--                </form>-->
             </div>
         </div>
     </div>
 </body>
-
 </html>

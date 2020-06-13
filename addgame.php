@@ -91,7 +91,7 @@ $platforms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //    }
 
 
-if (isset($_FILES['image'])) {
+if (isset($_POST['submit'])) {
 
     $title = $_POST["title"];
     $genre = $_POST['genre'];
@@ -102,8 +102,46 @@ if (isset($_FILES['image'])) {
     $platf = $_POST['platform'];
 
     $file_name = $_FILES['image']['name'];
+    $file_size = $_FILES['image']['size'];
+    $file_tmp = $_FILES['image']['tmp_name'];
+    $file_type = $_FILES['image']['type'];
+    $exploded = explode('.', $_FILES['image']['name']);
+    $file_ext = strtolower(end($exploded));
+    $file_name = strtolower($title) . ".jpg";
+    echo $file_name;
 
-    $required = array($title, $genre, $mode, $release, $developer, $publisher, $platf);
+    move_uploaded_file($file_tmp, "uploads/" . $file_name);
+    $file_path = "uploads/" . $file_name;
+
+    $i = 1;
+    extract($_POST);
+    $error = array();
+    $extension = array("jpeg", "jpg", "png", "gif");
+    foreach ($_FILES["files"]["tmp_name"] as $key => $tmp_name) {
+        $file_name = $_FILES["files"]["name"][$key];
+        $file_name = strtolower($title) . " $i" . ".jpg";
+        $i++;
+        $file_tmp = $_FILES["files"]["tmp_name"][$key];
+        $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
+        if (in_array($ext, $extension)) {
+            if (!file_exists("uploads/carousel" . $file_name)) {
+                move_uploaded_file($file_tmp = $_FILES["files"]["tmp_name"][$key], "uploads/carousel" . "/" . $file_name);
+            } else {
+                $filename = basename($file_name, $ext);
+                $newFileName = $filename . time() . "." . $ext;
+                move_uploaded_file($file_tmp = $_FILES["files"]["tmp_name"][$key], "uploads/carousel" . "/" . $newFileName);
+            }
+        } else {
+            array_push($error, "$file_name, ");
+        }
+    }
+
+
+//    $file_name = $_FILES['image']['name'];
+//    $required = array($title, $genre, $mode, $release, $developer, $publisher, $platf);
+
+
 //    $error = false;
 //    foreach($required as $field) {
 //        if (empty($_POST[$field])) {
@@ -117,19 +155,10 @@ if (isset($_FILES['image'])) {
 //        echo "<script type='text/javascript'>alert('$message');</script>";
 //        die;
 //    } else {
-    $file_size = $_FILES['image']['size'];
-    $file_tmp = $_FILES['image']['tmp_name'];
-    $file_type = $_FILES['image']['type'];
-    $exploded = explode('.', $_FILES['image']['name']);
-    $file_ext = strtolower(end($exploded));
+
+    //good
 
 
-    $file_name = strtolower($title) . ".jpg";
-
-    echo $file_name;
-    move_uploaded_file($file_tmp, "uploads/" . $file_name);
-
-    $file_path = "uploads/" . $file_name;
     $stmt = $conn->prepare("INSERT INTO game (title, genre, modes, release_date, imagePath, developer_id, publisher_id) VALUES (:title, :genre, :mode, :release, :imagePath, :developer, :publisher)");
     $stmt->bindParam(':title', $title);
     $stmt->bindParam(':genre', $genre);
@@ -177,73 +206,75 @@ if (isset($_FILES['image'])) {
     <title>Add a game</title>
 </head>
 <body>
-<h1 class="">Add a game</h1>
-<!--<div class="container">-->
 
-
-<form action="addgame.php" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            <label for="validationCustom01">Title</label>
-            <input type="text" class="form-control" id="validationCustom01" name="title" required>
+<h1 class="addGame">Add a game</h1>
+<div class="content">
+<div class="container">
+    <form action="addgame.php" method="POST" enctype="multipart/form-data" class="needs-validation addForm" novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="validationCustom01">Title</label>
+                <input type="text" class="form-control" id="validationCustom01" name="title" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="validationCustom02">Genre</label>
+                <input type="text" class="form-control" id="validationCustom02"
+                       placeholder="First-person shooter, Action-adventure..." name="genre" required>
+            </div>
         </div>
-        <div class="form-group col-md-3">
-            <label for="validationCustom02">Genre</label>
-            <input type="text" class="form-control" id="validationCustom02"
-                   placeholder="First-person shooter, Action-adventure..." name="genre" required>
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="validationCustom03">Modes</label>
+                <input type="text" class="form-control" id="validationCustom03"
+                       placeholder="Single-player, multiplayer..."
+                       name="mode" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="validationCustom04">Release date</label>
+                <input type="date" class="form-control" id="validationCustom04" name="release" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            <label for="validationCustom03">Modes</label>
-            <input type="text" class="form-control" id="validationCustom03" placeholder="Single-player, multiplayer..."
-                   name="mode" required>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="validationCustom05">Choose developer</label>
+                <select id="validationCustom05" class="custom-select" name="developer" required>
+                    <option selected disabled value="">Choose...</option>
+                    <?php foreach ($devs as $dev)
+                        echo "<option value='" . $dev['developer_id'] . "'>" . $dev['name'] . "</option>";
+                    ?>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="validationCustom06">Choose publisher</label>
+                <select id="validationCustom06" class="custom-select" name="publisher" required>
+                    <option selected disabled value="">Choose...</option>
+                    <?php foreach ($pubs as $pub)
+                        echo "<option value='" . $pub['publisher_id'] . "'>" . $pub['name'] . "</option>";
+                    ?>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="validationCustom07">Choose platform</label>
+                <select id="validationCustom07" class="custom-select" name="platform" required>
+                    <option selected disabled value="">Choose...</option>
+                    <?php foreach ($platforms as $platform)
+                        echo "<option value='" . $platform['platform_id'] . "'>" . $platform['name'] . "</option>";
+                    ?>
+                </select>
+            </div>
         </div>
-        <div class="form-group col-md-3">
-            <label for="validationCustom04">Release date</label>
-            <input type="date" class="form-control" id="validationCustom04" name="release" required>
+        <div class="form-group">
+            <label for="validationCustom07">Upload game preview image</label>
+            <input type="file" class="form-control-file" id="validationCustom07" name="image" required>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-2">
-            <label for="validationCustom05">Choose developer</label>
-            <select id="validationCustom05" class="custom-select" name="developer" required>
-                <option selected disabled value="">Choose...</option>
-                <?php foreach ($devs as $dev)
-                    echo "<option value='" . $dev['developer_id'] . "'>" . $dev['name'] . "</option>";
-                ?>
-            </select>
+        <div class="form-group">
+            <label for="validationCustom08">Please upload 3 images</label>
+            <input type="file" class="form-control-file" id="validationCustom08" name="files[]" multiple required>
         </div>
-        <div class="form-group col-md-2">
-            <label for="validationCustom06">Choose publisher</label>
-            <select id="validationCustom06" class="custom-select" name="publisher" required>
-                <option selected disabled value="">Choose...</option>
-                <?php foreach ($pubs as $pub)
-                    echo "<option value='" . $pub['publisher_id'] . "'>" . $pub['name'] . "</option>";
-                ?>
-            </select>
-        </div>
-        <div class="form-group col-md-2">
-            <label for="validationCustom07">Choose platform</label>
-            <select id="validationCustom07" class="custom-select" name="platform" required>
-                <option selected disabled value="">Choose...</option>
-                <?php foreach ($platforms as $platform)
-                    echo "<option value='" . $platform['platform_id'] . "'>" . $platform['name'] . "</option>";
-                ?>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="validationCustom07">Upload game preview image</label>
-        <input type="file" class="form-control-file" id="validationCustom07" name="image" required>
-    </div>
-    <!--    <div class="form-group">-->
-    <!--        <label for="validationCustom08">Upload 3 carousel image</label>-->
-    <!--        <input type="file" class="form-control-file" id="validationCustom08" name="imageC" required>-->
-    <!--    </div>-->
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    </form>
+</div>
+</div>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {

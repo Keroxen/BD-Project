@@ -11,7 +11,7 @@ define('IMAGE_URL', 'uploads/');
 //    $_SESSION['mailuid'] = $sessionUid;
 //}
 
-// TODO add, update, delete game
+// TODO add, update
 // TODO film adapt in details
 // TODO search by name in index?
 // TODO normalizare
@@ -26,6 +26,7 @@ define('IMAGE_URL', 'uploads/');
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/80feeba069.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

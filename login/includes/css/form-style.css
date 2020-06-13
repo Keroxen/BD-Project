@@ -4,12 +4,12 @@ body {
 }
 
 .form-head {
-    font-weight: bold;
     margin: 10px;
+    line-height: normal;
     padding-bottom: 20px;
     text-align: center;
-    font-size: 2em;
-    color: black;
+    font-size: 45px;
+    /*color: black;*/
     -webkit-text-fill-color: white;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
@@ -45,19 +45,6 @@ body {
     border-radius: 4px;
     padding: 20px 40px;
     width: 420px;
-}
-
-.btnRegister {
-    border: none;
-    padding: 13px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 100%;
-    font-size: 1.1em;
-    background: rgb(2,0,36);
-    background: linear-gradient(231deg, rgba(2,0,36,1) 0%, rgba(101,9,121,1) 17%, rgba(0,212,255,1) 100%);
 }
 
 .btnLogin {

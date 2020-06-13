@@ -27,7 +27,7 @@
         if ($_SESSION['userUid'] == 'guest') {
             echo ' 
  <form action="login/includes/login.inc.php" method="POST">
- <div class="form-head">Log in to your account!</div>
+ <div class="form-head">Log in as admin!</div>
  <div class="logIn">
  <div class="form-group">
                 <input class="form-control" type="text" name="mailuid"

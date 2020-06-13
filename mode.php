@@ -82,7 +82,7 @@ $printedRecords = 0;
             <thead>
             <tr>
                 <?php foreach ($modes as $mode)
-                    echo "<th scope='row'>" . $mode['modes']; ?>
+                    echo "<th class='modes' scope='row'>" . $mode['modes']; ?>
             </tr>
             </thead>
             <tbody>

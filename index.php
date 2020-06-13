@@ -70,7 +70,7 @@ $result = $stmt->fetchAll();
                 <div class="card">
                     <a class="details" href="details.php?id=<?php echo $game['game_id'] ?>">
 <!--                        <img src="--><?//= IMAGE_URL . $game['title'] . ".JPG" ?><!--">-->
-                        <?php echo "<img src='".$game['imagePath']."' />";
+                        <?php echo '<img src="'.$game['imagePath'].'"  />';
                         //echo '<img src="<?= IMAGE_URL . $game[\'title\'] . ".JPG" "'  ?>
                         <!--                             '<img style="border-radius: 30px; height: 300px; width: 250px" src="data:image/jpeg;base64,' . base64_encode($game['image']) . '"/>'; ?>-->
                     </a>
