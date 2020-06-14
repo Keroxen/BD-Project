@@ -19,5 +19,5 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
 
-
-$conn = new PDO("mysql:host=$servername; dbname=$db", $username, $password);
+$conn = new mysqli($servername, $username, $password, $db);
+//$conn = new PDO("mysql:host=$servername; dbname=$db", $username, $password);
