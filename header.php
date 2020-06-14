@@ -3,16 +3,7 @@
 include('config/db_connect.php');
 session_start();
 define('IMAGE_URL', 'uploads/');
-//if (isset($_POST['login-submit'])) {
-//    $sessionUid = $_POST['mailuid'];
-//    $_SESSION['mailuid'] = $sessionUid;
-//} else {
-//    $sessionUid = 'Guest';
-//    $_SESSION['mailuid'] = $sessionUid;
-//}
 
-// TODO add, update
-// TODO film adapt in details
 // TODO search by name in index?
 // TODO normalizare
 
@@ -51,10 +42,8 @@ define('IMAGE_URL', 'uploads/');
                 <a class="nav-link btn btn-primary" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="hello">
-                You are logged in as <?php if (isset($_SESSION['userUid'])) {
-                    echo $_SESSION['userUid'];
-
-
+                You are viewing as <?php if (isset($_SESSION['userUid'])) {
+                    echo "<span class='admin'>" . $_SESSION['userUid'] . "</span>";
                 } else {
                     $_SESSION['userUid'] = 'guest';
                     echo $_SESSION['userUid'];
@@ -71,7 +60,7 @@ define('IMAGE_URL', 'uploads/');
                 <a class="nav-link btn btn-primary" href="unreleased.php">Show unreleased games</a>
             </li>
         </ul>
-        <a target="_blank" href="#" class="doc">Documentatie</a>
+        <!--        <a target="_blank" href="#" class="doc">Documentatie</a>-->
         <a target="_blank" href="https://github.com/Keroxen/BD-Project" class="github">
             <i class="fa fa-github" aria-hidden="true"></i>
         </a>

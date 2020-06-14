@@ -1,15 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 
-//include('config/db_connect.php');
 include('header.php');
 
-// delete a game from DB
 
-
-// fetch all the data about a game
 if (isset($_GET['id'])) {
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);
 
@@ -36,7 +30,6 @@ if (isset($_GET['id'])) {
     ON game_platform.platform_id = digital_platform.platform_id
     WHERE game_platform.game_id = :id";
 
-
     try {
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id', $game_id);
@@ -56,7 +49,6 @@ if (isset($_GET['id'])) {
 
         $developer_id = $dev['developer_id'];
         $publisher_id = $pub['publisher_id'];
-//        $platform_id = $platf[''];
 
     } catch (PDOException $e) {
         echo $e->getMessage();
@@ -65,8 +57,6 @@ if (isset($_GET['id'])) {
 
 
 }
-
-// working...
 
 if (isset($_POST['delete'])) {
     $game_id = $_POST['delete_id'];

@@ -4,9 +4,7 @@ include('header.php');
 
 $dev_id = $_GET['id'];
 
-
 $sql = "SELECT * FROM developer WHERE developer_id = :id;
-
 
 SELECT developer.management_id, management_dev.management_id, management_dev.name
 FROM developer
@@ -24,20 +22,11 @@ WHERE developer.developer_id = :id";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $dev_id);
 $stmt->execute();
-
-
-
 $dev = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//$stmt->nextRowset();
-//$columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//print_r($dev);
+
 
 $stmt->nextRowset();
 $manag = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//array_shift($columns); //skip id column
-//array_splice($columns, -2);
-
 $stmt->nextRowset();
 $platform = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -60,7 +49,6 @@ $platform = $stmt->fetch(PDO::FETCH_ASSOC);
         <table class="table table-borderless">
             <thead>
             <tr>
-
                 <?php echo "<th scope='row'>" . "Name";
                 echo "<th scope='row'>" . "HQ";
                 echo "<th scope='row'>" . "Founded";
@@ -71,7 +59,7 @@ $platform = $stmt->fetch(PDO::FETCH_ASSOC);
             </tr>
             </thead>
             <tbody>
-            <!--            --><?php
+            <?php
             foreach ($dev as $item)
                 echo "<tr>";
             echo "<td>" . $item['name'];
@@ -81,7 +69,7 @@ $platform = $stmt->fetch(PDO::FETCH_ASSOC);
             if (isset($platform['name'])) {
                 echo "<td>" . $platform['name'];
             }
-           ?>
+            ?>
             </tbody>
         </table>
     </div>

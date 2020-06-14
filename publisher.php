@@ -14,12 +14,6 @@ INNER JOIN management_pub
 ON publisher.management_id = management_pub.management_id
 WHERE publisher.publisher_id = :id";
 
-//SELECT digital_platform.platform_id, digital_platform.name, developer.platform_id
-//FROM digital_platform
-//INNER JOIN
-//developer
-//ON digital_platform.platform_id = developer.platform_id
-//WHERE developer.developer_id = :id";
 
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $pub_id);
@@ -27,18 +21,8 @@ $stmt->execute();
 
 
 $pub = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//$stmt->nextRowset();
-//$columns = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//print_r($dev);
-
 $stmt->nextRowset();
 $manag = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//array_shift($columns); //skip id column
-//array_splice($columns, -1);
-
-//$stmt->nextRowset();
-//$platform = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -58,7 +42,6 @@ $manag = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <table class="table table-borderless">
             <thead>
             <tr>
-
                 <?php echo "<th scope='row'>" . "Name";
                 echo "<th scope='row'>" . "HQ";
                 echo "<th scope='row'>" . "Founded";

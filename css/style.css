@@ -1,96 +1,3 @@
-/*html {*/
-/*    background: url(../images/background.jpg) no-repeat center center fixed;*/
-/*    filter: blur(5px);*/
-/*    -webkit-background-size: cover;*/
-/*    -moz-background-size: cover;*/
-/*    -o-background-size: cover;*/
-/*    background-size: cover;*/
-/*}*/
-
-/*.content:before {*/
-/*    content: "";*/
-/*    position: fixed;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    z-index: -1;*/
-/*    display: block;*/
-/*    background: url('../images/background.jpg') no-repeat center center fixed;*/
-/*    !*width: 1200px;*!*/
-/*    !*height: 800px;*!*/
-/*    -webkit-filter: blur(5px);*/
-/*    -moz-filter: blur(5px);*/
-/*    -o-filter: blur(5px);*/
-/*    -ms-filter: blur(5px);*/
-/*    filter: blur(5px);*/
-/*    -webkit-background-size: cover;*/
-/*    -moz-background-size: cover;*/
-/*    -o-background-size: cover;*/
-/*    background-size: cover;*/
-/*}*/
-
-/*.content {*/
-/*    position: fixed;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    z-index: 0;*/
-/*    margin-left: 20px;*/
-/*    margin-right: 20px;*/
-/*}*/
-
-/*.content:before {*/
-/*    content: "";*/
-/*    position: fixed;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    z-index: -1;*/
-
-/*    display: block;*/
-/*    background-image: url('https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwia-8uZ97zmAhU-wAIHHQjgBJ0QjRx6BAgBEAQ&url=https%3A%2F%2Fwww.pythoncircle.com%2Fpost%2F691%2Fpython-script-17-setting-bing-image-of-the-day-as-desktop-wallpaper%2F&psig=AOvVaw2GT_gjpdTBl2bpdyBaMlRZ&ust=1576680630569526');*/
-/*    width: 1200px;*/
-/*    height: 800px;*/
-
-/*    -webkit-filter: blur(5px);*/
-/*    -moz-filter: blur(5px);*/
-/*    -o-filter: blur(5px);*/
-/*    -ms-filter: blur(5px);*/
-/*    filter: blur(5px);*/
-/*}*/
-
-/*.content {*/
-/*    position: fixed;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    z-index: 0;*/
-/*    margin-left: 20px;*/
-/*    margin-right: 20px;*/
-/*]
- */
-
-/*.background-image {*/
-/*    position: fixed;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    z-index: 1;*/
-/*    display: block;*/
-/*    background-image: url('https://www.pythoncircle.com/media/uploads/desktop-wallpaper-change-python-20190823-d0843f2cd287490f8e1eeaa712e0f689.jpeg');*/
-/*    width: 1200px;*/
-/*    height: 800px;*/
-/*    -webkit-filter: blur(5px);*/
-/*    -moz-filter: blur(5px);*/
-/*    -o-filter: blur(5px);*/
-/*    -ms-filter: blur(5px);*/
-/*    filter: blur(5px);*/
-/*}*/
-
-/*.content {*/
-/*    position: fixed;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    z-index: 9999;*/
-/*    margin-left: 20px;*/
-/*    margin-right: 20px;*/
-/*}*/
-
 * {
     font-family: 'Roboto', sans-serif;
 }
@@ -215,11 +122,9 @@ h6 {
     border-radius: 30px;
     height: 320px;
     width: 300px;
-    /*margin: 50px;*/
 }
 
 .container-fluid img {
-    /*width: 250px;*/
     height: 650px;
 }
 
@@ -227,11 +132,10 @@ body {
     padding-top: 100px;
 }
 
-/*img {*/
-/*    height: 380px;*/
-/*    width: 320px;*/
-/*}*/
-
+.submitBtn {
+    margin: 0 auto !important;
+    padding-left: -30px !important;
+}
 
 .navbar {
     margin-bottom: 200px;
@@ -272,16 +176,14 @@ body {
 }
 
 
-
 .h1 {
-    /*font-family: 'AnimeAce2.0BB' !important;*/
     font-size: 60px;
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 1;
     padding-bottom: 50px;
     color: black;
-    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-fill-color: white;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
@@ -349,11 +251,13 @@ a:hover {
 }
 
 .addForm {
-   padding-top: 20px;
+    padding-top: 20px;
     text-align: center;
     background-color: rgba(124, 124, 124, 0.85) !important;
     border-radius: 25px;
-    padding-left: 130px;
+    padding-left: 100px;
+    margin-right: auto;
+    /*margin-right: auto;*/
     padding-bottom: 20px;
 }
 
@@ -387,4 +291,8 @@ label {
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px !important;
+}
+
+.admin {
+    color: #f71fff;
 }

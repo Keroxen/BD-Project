@@ -3,8 +3,6 @@
 include('header.php');
 
 $sql = "
-
-
 SELECT name, developer_id as id
 FROM
 (
@@ -52,38 +50,32 @@ try {
 </head>
 <body>
 <div class="content">
-<!--    <div class="container">-->
-        <div class="row">
-            <div class="bg">
-                <div class="col">
-                    <?php foreach ($devs_pubs as $item):
+    <div class="row">
+        <div class="bg">
+            <div class="col">
+                <?php foreach ($devs_pubs as $item):
 
-                        echo "<h2 class='h2_dp'>" . $item['name'] . "</h2>";
+                    echo "<h2 class='h2_dp'>" . $item['name'] . "</h2>";
 
-                        foreach ($games as $game):
-                            $count++;
-                            if ($game['dName'] == $item['name'] && $game['pName'] != $item['name']) {
-                                echo "<li class='li_dp'>" . "Developed: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
-                            }
-                            if ($game['pName'] == $item['name'] && $game['dName'] != $item['name']) {
-                                echo "<li class='li_dp'>" . "Published: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
-                            }
+                    foreach ($games as $game):
+                        $count++;
+                        if ($game['dName'] == $item['name'] && $game['pName'] != $item['name']) {
+                            echo "<li class='li_dp'>" . "Developed: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
+                        }
+                        if ($game['pName'] == $item['name'] && $game['dName'] != $item['name']) {
+                            echo "<li class='li_dp'>" . "Published: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
+                        }
 
-                            if ($game['dName'] == $item['name'] && $game['pName'] == $item['name']) {
-                                echo "<li class='li_dp'>" . "Developed and published: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
-                            }
-//                            if ($count >= 10) {
-//                                echo "<div class='col'>";
-//
-//                            }
-                        endforeach;
+                        if ($game['dName'] == $item['name'] && $game['pName'] == $item['name']) {
+                            echo "<li class='li_dp'>" . "Developed and published: " . "<a href=\"details.php?id={$game['game_id']}\">" . $game['title'] . "</a>" . "</li>";
+                        }
                     endforeach;
+                endforeach;
 
-                    ?>
-                </div>
-<!--            </div>-->
+                ?>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
