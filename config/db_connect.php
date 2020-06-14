@@ -20,6 +20,6 @@ $password = $url["pass"];
 $db = substr($url["path"], 1);
 
 
-    $conn = new PDO("mysql:host=$servername; dbname=$db",  $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn = new PDO("mysql:host=$servername; dbname=$db", $username, $password);
+//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
