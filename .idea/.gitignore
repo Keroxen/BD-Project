@@ -2,6 +2,7 @@
 /workspace.xml
 # Datasource local storage ignored files
 /dataSources/
+/vendor/
 
 # Datasource local storage ignored files
 /dataSources.local.xml
