@@ -1,6 +1,8 @@
 <?php
 
 
+// local database
+
 //$servername = "localhost";
 //$username = "alin";
 //$password = "alin00";
@@ -12,6 +14,8 @@
 //    echo "Connection failed: " . $e->getMessage();
 //}
 
+
+// heroku database
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $servername = $url["host"];
@@ -21,5 +25,5 @@ $db = substr($url["path"], 1);
 
 
 $conn = new PDO("mysql:host=$servername; dbname=$db", $username, $password);
-//////$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 

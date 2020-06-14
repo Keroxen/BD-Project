@@ -1,5 +1,7 @@
 <?php
 
+// local database
+
 //$servername = "localhost";
 //$dbUsername = "alin";
 //$dbPassword = "alin00";
@@ -11,6 +13,7 @@
 //    die("Connection failed: " . mysqli_connect_error());
 //}
 
+//heroku database
 
 $url = parse_url(getenv("CLEARDB_SILVER_URL"));
 
@@ -20,4 +23,3 @@ $password = $url["pass"];
 $db = substr($url["path"], 1);
 
 $conn = new mysqli($servername, $username, $password, $db);
-//$conn = new PDO("mysql:host=$servername; dbname=$db", $username, $password);
