@@ -1,8 +1,9 @@
 # Default ignored files
 /workspace.xml
+/vendor/
 # Datasource local storage ignored files
 /dataSources/
-/vendor/
+
 
 # Datasource local storage ignored files
 /dataSources.local.xml
