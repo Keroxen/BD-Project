@@ -1,34 +1,28 @@
 <?php
-error_reporting( E_ALL );
-ini_set( 'display_errors', 1 );
-//// connect to database
-//$conn = mysqli_connect('localhost', 'alin', 'alin00', 'games_db');
+
+
+//$servername = "localhost";
+//$username = "alin";
+//$password = "alin00";
 //
-//// check connection
-//if (!$conn) {
-//    echo 'Connection error: ' . mysqli_connect_error();
+//try {
+//    $conn = new PDO("mysql:host=$servername;dbname=alin-jocuri", $username, $password);
+//    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);;
+//} catch (PDOException $e) {
+//    echo "Connection failed: " . $e->getMessage();
 //}
 
-// PDO
+$url = parse_url(getenv("mysql://ba8f75e0844322:2e6d5d3e@us-cdbr-east-05.cleardb.net/heroku_b08a38a08abfba0?reconnect=true"));
 
-$servername = "localhost";
-$username = "alin";
-$password = "alin00";
-//$database = "alin-jocuri-b";
+
+$servername = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=alin-jocuri", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   // echo "Connected successfully";
+    $conn = new PDO("mysql:host=$servername; dbname=$db",  $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);;
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-//$conn = mysqli_connect($servername, $username, $password, $database);
-//
-//if (!$conn) {
-//    echo "Eroare: Nu a fost posibilă conectarea la MySQL." . PHP_EOL;
-//    echo "Valoarea errno: " . mysqli_connect_errno() . PHP_EOL;
-//    exit;
-//}
-
-//mysqli_close($conn);
