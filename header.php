@@ -60,7 +60,7 @@ define('IMAGE_URL', 'uploads/');
                 <a class="nav-link btn btn-primary" href="unreleased.php">Show unreleased games</a>
             </li>
         </ul>
-        <!--        <a target="_blank" href="#" class="doc">Documentatie</a>-->
+                <a target="_blank" href="https://drive.google.com/file/d/1JL3AaswWli8zTXXCS2Axp7ar0rRZKMKV/view?usp=sharing" class="doc">Documentatie</a>
         <a target="_blank" href="https://github.com/Keroxen/BD-Project" class="github">
             <i class="fa fa-github" aria-hidden="true"></i>
         </a>
