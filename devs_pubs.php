@@ -2,37 +2,72 @@
 
 include('header.php');
 
-$sql = "
-SELECT name, developer_id as id
-FROM
-(
+
+try {
+
+    $conn->beginTransaction();
+
+    $stmt1 = $conn->query("SELECT name, developer_id as id
+    FROM
+    (
     SELECT name, developer_id FROM developer
     UNION ALL
     SELECT name, publisher_id FROM publisher
-) id
-GROUP BY name
-;
+    ) id
+    GROUP BY name");
 
-SELECT game.title, game.game_id, developer.name AS 'dName', publisher.name AS 'pName', developer.developer_id, publisher.publisher_id 
-FROM game
-INNER JOIN developer 
-ON developer.developer_id = game.developer_id
-INNER JOIN publisher
-ON publisher.publisher_id = game.publisher_id";
+    $stmt1->execute();
+
+
+    $stmt2 = $conn->query("SELECT game.title, game.game_id, developer.name AS 'dName', publisher.name AS 'pName', developer.developer_id, publisher.publisher_id 
+    FROM game
+    INNER JOIN developer 
+    ON developer.developer_id = game.developer_id
+    INNER JOIN publisher
+    ON publisher.publisher_id = game.publisher_id");
+
+    $stmt2->execute();
+
+    $conn->commit();
+
+} catch (Exception $e) {
+    $conn->rollback();
+}
+
+
+//$sql = "
+//SELECT name, developer_id as id
+//FROM
+//(
+//    SELECT name, developer_id FROM developer
+//    UNION ALL
+//    SELECT name, publisher_id FROM publisher
+//) id
+//GROUP BY name
+//;
+//
+//SELECT game.title, game.game_id, developer.name AS 'dName', publisher.name AS 'pName', developer.developer_id, publisher.publisher_id
+//FROM game
+//INNER JOIN developer
+//ON developer.developer_id = game.developer_id
+//INNER JOIN publisher
+//ON publisher.publisher_id = game.publisher_id";
 
 $count = 0;
 
-try {
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $devs_pubs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt->nextRowset();
-    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//try {
 
-} catch (PDOException $e) {
-    echo $e->getMessage();
-    die();
-}
+
+//    $stmt = $conn->prepare($sql);
+//    $stmt->execute();
+$devs_pubs = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+//    $stmt->nextRowset();
+$games = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+//} catch (PDOException $e) {
+//    echo $e->getMessage();
+//    die();
+//}
 
 
 ?>
