@@ -4,8 +4,8 @@
 // local database
 
 $servername = "localhost";
-$username = "alin";
-$password = "alin00";
+$username = "";
+$password = "";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=alin-jocuri", $username, $password);
